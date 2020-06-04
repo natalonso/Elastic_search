@@ -1,0 +1,88 @@
+/* 1 */
+/* 1 */
+/**
+ * 1. Extend beta badges to at least 40% of the container's width
+ * 2. Fix for IE to ensure badges are visible outside of a <button> tag
+ */
+/**
+ * 1. Apply margin to all but last item in the flex.
+ * 2. Margin gets flipped because of the row-reverse.
+ */
+/**
+ * 3. Must supply both values to background-size or some browsers apply the single value to both directions
+ */
+/**
+ * 4. Override invalid state with focus state.
+ */
+/**
+ *  Mixin for use in:
+ *  - EuiCard
+ *  - EuiPageContent
+*/
+/*
+ * Prevent switch controls from moving around when toggling content
+ */
+.snapshotRestore__restoreForm__stepLogistics .euiFormRow--hasEmptyLabelSpace,
+.snapshotRestore__restoreForm__stepSettings .euiFormRow--hasEmptyLabelSpace {
+  min-height: auto;
+  margin-top: 30px; }
+
+/*
+ * Allow toggle mode link in indices field label to be flushed right
+ */
+.snapshotRestore__restoreForm__stepLogistics__indicesFieldWrapper .euiFormLabel {
+  width: 100%; }
+
+/*
+ * Prevent switch controls from moving around when toggling content
+ */
+.snapshotRestore__policyForm__stepSettings .euiFormRow--hasEmptyLabelSpace {
+  min-height: auto;
+  margin-top: 30px; }
+
+/*
+ * Allow toggle mode link in indices field label to be flushed right
+ */
+.snapshotRestore__policyForm__stepSettings__indicesFieldWrapper .euiFormLabel {
+  width: 100%; }
+
+/*
+ * 1. Allow child progress bar to expand to container size
+ * 2. Adjust table styling to differentiate from parent table
+ */
+.snapshotRestore__shardsTable {
+  margin: 8px 0 8px 24px;
+  /* 2 */ }
+  .snapshotRestore__shardsTable .euiToolTipAnchor {
+    width: 100%;
+    /* 1 */ }
+  .snapshotRestore__shardsTable .euiTable {
+    background: none; }
+    .snapshotRestore__shardsTable .euiTable .euiTableRow:last-child > .euiTableRowCell {
+      border-bottom: none; }
+    .snapshotRestore__shardsTable .euiTable .euiTableRow:hover,
+    .snapshotRestore__shardsTable .euiTable .euiTableRow:hover > .euiTableRowCell {
+      background: #F5F7FA; }
+
+/*
+ * 1. Make in progress snapshot loading indicator be centered vertically
+ *    when it is inside tooltip wrapper
+ */
+.snapshotRestore__policyTable .euiToolTipAnchor {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+
+/*
+ * Wraps long snapshot name with ellipsis when it is rendered with an icon
+ */
+.snapshotRestorePolicyTableSnapshotFailureContainer {
+  max-width: 200px; }
+  .snapshotRestorePolicyTableSnapshotFailureContainer > .euiFlexItem:last-child {
+    min-width: 0; }
+    .snapshotRestorePolicyTableSnapshotFailureContainer > .euiFlexItem:last-child .euiText {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis; }
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJ1aWxkL25vZGVfbW9kdWxlcy9AZWxhc3RpYy9ldWkvc3JjL2dsb2JhbF9zdHlsaW5nL3ZhcmlhYmxlcy9fZm9ybS5zY3NzIiwiYnVpbGQvbm9kZV9tb2R1bGVzL0BlbGFzdGljL2V1aS9zcmMvZ2xvYmFsX3N0eWxpbmcvbWl4aW5zL19iZXRhX2JhZGdlLnNjc3MiLCJidWlsZC9raWJhbmEveC1wYWNrL2xlZ2FjeS9wbHVnaW5zL3NuYXBzaG90X3Jlc3RvcmUvcHVibGljL2FwcC9pbmRleC5zY3NzIiwiYnVpbGQvbm9kZV9tb2R1bGVzL0BlbGFzdGljL2V1aS9zcmMvZ2xvYmFsX3N0eWxpbmcvbWl4aW5zL19idXR0b24uc2NzcyIsImJ1aWxkL25vZGVfbW9kdWxlcy9AZWxhc3RpYy9ldWkvc3JjL2dsb2JhbF9zdHlsaW5nL21peGlucy9fZm9ybS5zY3NzIiwiYnVpbGQvbm9kZV9tb2R1bGVzL0BlbGFzdGljL2V1aS9zcmMvZ2xvYmFsX3N0eWxpbmcvbWl4aW5zL19wYW5lbC5zY3NzIiwiYnVpbGQva2liYW5hL3gtcGFjay94LXBhY2svbGVnYWN5L3BsdWdpbnMvc25hcHNob3RfcmVzdG9yZS9wdWJsaWMvYXBwL2NvbXBvbmVudHMvcmVzdG9yZV9zbmFwc2hvdF9mb3JtL19yZXN0b3JlX3NuYXBzaG90X2Zvcm0uc2NzcyIsImJ1aWxkL2tpYmFuYS94LXBhY2sveC1wYWNrL2xlZ2FjeS9wbHVnaW5zL3NuYXBzaG90X3Jlc3RvcmUvcHVibGljL2FwcC9jb21wb25lbnRzL3BvbGljeV9mb3JtL19wb2xpY3lfZm9ybS5zY3NzIiwiYnVpbGQva2liYW5hL3gtcGFjay94LXBhY2svbGVnYWN5L3BsdWdpbnMvc25hcHNob3RfcmVzdG9yZS9wdWJsaWMvYXBwL3NlY3Rpb25zL2hvbWUvX2hvbWUuc2NzcyIsImJ1aWxkL25vZGVfbW9kdWxlcy9AZWxhc3RpYy9ldWkvc3JjL2dsb2JhbF9zdHlsaW5nL3ZhcmlhYmxlcy9fc2l6ZS5zY3NzIiwiYnVpbGQvbm9kZV9tb2R1bGVzL0BlbGFzdGljL2V1aS9zcmMvZ2xvYmFsX3N0eWxpbmcvdmFyaWFibGVzL19jb2xvcnMuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUF5QzZFLE1BQUE7QUFDb0IsTUFBQTtBQ3pDakc7OztFQ0lFO0FDOEJGOzs7RUQxQkU7QUUwREY7O0VGdkRFO0FFNExGOztFRnpMRTtBR2ZGOzs7O0NIb0JDO0FJcEJEOztFSnVCRTtBSXBCRjs7RUFHSSxnQkFBZ0I7RUFDaEIsZ0JBQTBELEVBQUE7O0FBSTlEOztFSm9CRTtBSWpCRjtFQUNFLFdBQVcsRUFBQTs7QUNmYjs7RUxxQ0U7QUtsQ0Y7RUFFSSxnQkFBZ0I7RUFDaEIsZ0JBQTBELEVBQUE7O0FBSTlEOztFTGtDRTtBSy9CRjtFQUNFLFdBQVcsRUFBQTs7QUNkYjs7O0VObURFO0FNL0NGO0VBS0Usc0JDSjBCO0VESWUsTUFBQSxFQUFPO0VBTGxEO0lBRUksV0FBVztJQUFFLE1BQUEsRUFBTztFQUZ4QjtJQU9JLGdCQUFnQixFQUFBO0lBUHBCO01BU00sbUJBQW1CLEVBQUE7SUFUekI7O01BYU0sbUJFQXlCLEVBQUE7O0FGSy9COzs7RU4rQ0U7QU0zQ0Y7RUFFSSxvQkFBYTtFQUFiLHFCQUFhO0VBQWIsb0JBQWE7RUFBYixhQUFhLEVBQUE7O0FBSWpCOztFTjJDRTtBTXhDRjtFQUNFLGdCQUFnQixFQUFBO0VBRGxCO0lBR00sWUFBWSxFQUFBO0lBSGxCO01BS1EsbUJBQW1CO01BQ25CLGdCQUFnQjtNQUNoQix1QkFBdUIsRUFBQSIsImZpbGUiOiJidWlsZC9raWJhbmEveC1wYWNrL2xlZ2FjeS9wbHVnaW5zL3NuYXBzaG90X3Jlc3RvcmUvcHVibGljL2FwcC9pbmRleC5zY3NzIn0= */

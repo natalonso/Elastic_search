@@ -1,0 +1,185 @@
+/* 1 */
+/* 1 */
+/**
+ * 1. Extend beta badges to at least 40% of the container's width
+ * 2. Fix for IE to ensure badges are visible outside of a <button> tag
+ */
+/**
+ * 1. Apply margin to all but last item in the flex.
+ * 2. Margin gets flipped because of the row-reverse.
+ */
+/**
+ * 3. Must supply both values to background-size or some browsers apply the single value to both directions
+ */
+/**
+ * 4. Override invalid state with focus state.
+ */
+/**
+ *  Mixin for use in:
+ *  - EuiCard
+ *  - EuiPageContent
+*/
+.mappingsEditor__editField__formRow {
+  margin-bottom: 32px; }
+  .mappingsEditor__editField__formRow:last-child {
+    margin-bottom: 0; }
+
+.mappingsEditor__editField__formRow__description {
+  padding-top: 8px; }
+
+/*
+ [1] We need to compensate from the -4px margin added by the euiFlexGroup to make sure that the
+ border-bottom is always visible, even when mouseovering and changing the background color.
+ */
+.mappingsEditor__fieldsListItem--dottedLine > .mappingsEditor__fieldsListItem__field {
+  border-bottom-style: dashed; }
+
+.mappingsEditor__fieldsListItem__field {
+  border-bottom: 1px solid #D3DAE6;
+  height: 64px;
+  margin-top: 4px; }
+
+.mappingsEditor__fieldsListItem__field--enabled:hover {
+  background-color: #F5F7FA; }
+
+.mappingsEditor__fieldsListItem__field--highlighted {
+  background-color: #F5F7FA; }
+  .mappingsEditor__fieldsListItem__field--highlighted:hover {
+    background-color: #F5F7FA; }
+
+.mappingsEditor__fieldsListItem__field--dim {
+  opacity: 0.3; }
+  .mappingsEditor__fieldsListItem__field--dim:hover {
+    background-color: initial; }
+
+.mappingsEditor__fieldsListItem__wrapper {
+  padding-left: 4px; }
+
+.mappingsEditor__fieldsListItem__wrapper--indent {
+  padding-left: 16px; }
+
+.mappingsEditor__fieldsListItem__content {
+  height: 64px;
+  position: relative; }
+
+.mappingsEditor__fieldsListItem__content--indent {
+  padding-left: 32px; }
+
+.mappingsEditor__fieldsListItem__toggle {
+  padding-left: 4px;
+  width: 24px; }
+
+.mappingsEditor__fieldsListItem__actions {
+  padding-left: 8px; }
+
+/*
+ [1] When the <CreateField /> component is embedded inside the tree, we need
+ to add some extra indent to make room for the child "L" bullet on the left.
+
+ [2] By default all content have a padding left to leave some room for the "L" bullet
+ unless "--toggle" is added. In that case we don't need padding as the toggle will add it.
+*/
+.mappingsEditor__editField {
+  min-width: 680px; }
+
+.mappingsEditor__createFieldWrapper {
+  background-color: #F5F7FA;
+  border-right: 1px solid #D3DAE6;
+  border-bottom: 1px solid #D3DAE6;
+  border-left: 1px solid #D3DAE6;
+  padding: 16px; }
+
+.mappingsEditor__createFieldContent {
+  position: relative; }
+
+.mappingsEditor__createFieldRequiredProps {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #D3DAE6; }
+
+.mappingsEditor__selectWithCustom {
+  position: relative; }
+  .mappingsEditor__selectWithCustom__button {
+    position: absolute;
+    right: 0;
+    top: 0; }
+
+.mappingsEditor__fieldsList .mappingsEditor__fieldsList .mappingsEditor__fieldsListItem__content::before,
+.mappingsEditor__fieldsList .mappingsEditor__createFieldContent::before {
+  border-bottom: 1px solid #98A2B3;
+  content: '';
+  left: 16px;
+  position: absolute;
+  top: 50%;
+  width: 8px; }
+
+.mappingsEditor__fieldsList .mappingsEditor__fieldsList .mappingsEditor__fieldsListItem__content::after,
+.mappingsEditor__fieldsList .mappingsEditor__createFieldContent::after {
+  border-left: 1px solid #98A2B3;
+  content: '';
+  left: 16px;
+  position: absolute;
+  top: calc(50% - 8px);
+  height: 8px; }
+
+.mappingsEditor__fieldsList .mappingsEditor__createFieldContent {
+  padding-left: 36px; }
+
+.mappingsEditor__fieldsList .mappingsEditor__createFieldWrapper--multiField .mappingsEditor__createFieldContent {
+  padding-left: 16px; }
+
+.mappingsEditor__fieldsList .mappingsEditor__createFieldWrapper--multiField .mappingsEditor__createFieldContent::before, .mappingsEditor__fieldsList .mappingsEditor__createFieldWrapper--multiField .mappingsEditor__createFieldContent::after {
+  content: none; }
+
+.mappingsEditor__fieldsList .mappingsEditor__createFieldWrapper--toggle .mappingsEditor__createFieldContent {
+  padding-left: 36px; }
+
+.mappingsEditor__fieldsList .mappingsEditor__fieldsList .mappingsEditor__fieldsListItem__content {
+  padding-left: 32px; }
+  .mappingsEditor__fieldsList .mappingsEditor__fieldsList .mappingsEditor__fieldsListItem__content--toggle::before, .mappingsEditor__fieldsList .mappingsEditor__fieldsList .mappingsEditor__fieldsListItem__content--toggle::after, .mappingsEditor__fieldsList .mappingsEditor__fieldsList .mappingsEditor__fieldsListItem__content--multiField::before, .mappingsEditor__fieldsList .mappingsEditor__fieldsList .mappingsEditor__fieldsListItem__content--multiField::after {
+    content: none; }
+  .mappingsEditor__fieldsList .mappingsEditor__fieldsList .mappingsEditor__fieldsListItem__content--toggle {
+    padding-left: 0; }
+  .mappingsEditor__fieldsList .mappingsEditor__fieldsList .mappingsEditor__fieldsListItem__content--multiField {
+    padding-left: 8px; }
+
+ul.esUiTree {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  position: relative;
+  padding-top: 4px; }
+  ul.esUiTree li.esUiTreeItem {
+    list-style-type: none;
+    border-left: 1px solid #D3DAE6;
+    margin-left: 24px;
+    padding-bottom: 8px; }
+  ul.esUiTree .esUiTreeItem__label {
+    font-size: 14px;
+    padding-left: 24px;
+    position: relative; }
+    ul.esUiTree .esUiTreeItem__label::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -1px;
+      bottom: 50%;
+      width: 16px;
+      border: 1px solid #D3DAE6;
+      border-top: none;
+      border-right: none; }
+  ul.esUiTree > li.esUiTreeItem:first-child {
+    padding-top: 8px; }
+  ul.esUiTree > li.esUiTreeItem:last-child {
+    border-left-color: transparent;
+    padding-bottom: 0; }
+
+.indTable thead th.indTable__header--name {
+  width: 25%; }
+
+.indTable .indTable__cell--name {
+  word-break: break-all; }
+
+.indDetail__codeBlock {
+  background: transparent; }
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJ1aWxkL25vZGVfbW9kdWxlcy9AZWxhc3RpYy9ldWkvc3JjL2dsb2JhbF9zdHlsaW5nL3ZhcmlhYmxlcy9fZm9ybS5zY3NzIiwiYnVpbGQvbm9kZV9tb2R1bGVzL0BlbGFzdGljL2V1aS9zcmMvZ2xvYmFsX3N0eWxpbmcvbWl4aW5zL19iZXRhX2JhZGdlLnNjc3MiLCJidWlsZC9raWJhbmEveC1wYWNrL2xlZ2FjeS9wbHVnaW5zL2luZGV4X21hbmFnZW1lbnQvcHVibGljL2luZGV4LnNjc3MiLCJidWlsZC9ub2RlX21vZHVsZXMvQGVsYXN0aWMvZXVpL3NyYy9nbG9iYWxfc3R5bGluZy9taXhpbnMvX2J1dHRvbi5zY3NzIiwiYnVpbGQvbm9kZV9tb2R1bGVzL0BlbGFzdGljL2V1aS9zcmMvZ2xvYmFsX3N0eWxpbmcvbWl4aW5zL19mb3JtLnNjc3MiLCJidWlsZC9ub2RlX21vZHVsZXMvQGVsYXN0aWMvZXVpL3NyYy9nbG9iYWxfc3R5bGluZy9taXhpbnMvX3BhbmVsLnNjc3MiLCJidWlsZC9raWJhbmEveC1wYWNrL3gtcGFjay9sZWdhY3kvcGx1Z2lucy9pbmRleF9tYW5hZ2VtZW50L3B1YmxpYy9hcHAvY29tcG9uZW50cy9tYXBwaW5nc19lZGl0b3IvY29tcG9uZW50cy9kb2N1bWVudF9maWVsZHMvZmllbGRzL2VkaXRfZmllbGQvX2VkaXRfZmllbGRfZm9ybV9yb3cuc2NzcyIsImJ1aWxkL25vZGVfbW9kdWxlcy9AZWxhc3RpYy9ldWkvc3JjL2dsb2JhbF9zdHlsaW5nL3ZhcmlhYmxlcy9fc2l6ZS5zY3NzIiwiYnVpbGQva2liYW5hL3gtcGFjay94LXBhY2svbGVnYWN5L3BsdWdpbnMvaW5kZXhfbWFuYWdlbWVudC9wdWJsaWMvYXBwL2NvbXBvbmVudHMvbWFwcGluZ3NfZWRpdG9yL2NvbXBvbmVudHMvZG9jdW1lbnRfZmllbGRzL2ZpZWxkcy9fZmllbGRfbGlzdF9pdGVtLnNjc3MiLCJidWlsZC9ub2RlX21vZHVsZXMvQGVsYXN0aWMvZXVpL3NyYy9nbG9iYWxfc3R5bGluZy92YXJpYWJsZXMvX2NvbG9ycy5zY3NzIiwiYnVpbGQva2liYW5hL3gtcGFjay94LXBhY2svbGVnYWN5L3BsdWdpbnMvaW5kZXhfbWFuYWdlbWVudC9wdWJsaWMvYXBwL2NvbXBvbmVudHMvbWFwcGluZ3NfZWRpdG9yL19pbmRleC5zY3NzIiwiYnVpbGQvbm9kZV9tb2R1bGVzL0BlbGFzdGljL2V1aS9zcmMvZ2xvYmFsX3N0eWxpbmcvdmFyaWFibGVzL190eXBvZ3JhcGh5LnNjc3MiLCJidWlsZC9raWJhbmEveC1wYWNrL3gtcGFjay9sZWdhY3kvcGx1Z2lucy9pbmRleF9tYW5hZ2VtZW50L3B1YmxpYy9pbmRleC5zY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQXlDNkUsTUFBQTtBQUNvQixNQUFBO0FDekNqRzs7O0VDSUU7QUM4QkY7OztFRDFCRTtBRTBERjs7RUZ2REU7QUU0TEY7O0VGekxFO0FHZkY7Ozs7Q0hvQkM7QUlwQkQ7RUFDRSxtQkNLd0IsRUFBQTtFRE4xQjtJQUlJLGdCQUFnQixFQUFBOztBQUlwQjtFQUNFLGdCQ055QixFQUFBOztBQ0gzQjs7O0VOZ0NFO0FNM0JGO0VBRUksMkJBQTJCLEVBQUE7O0FBSS9CO0VBQ0UsZ0NDTTBCO0VETDFCLFlBQXNCO0VBQ3RCLGVEWjBCLEVBQUE7O0FDZTVCO0VBRUkseUJDRjJCLEVBQUE7O0FETS9CO0VBQ0UseUJDUDZCLEVBQUE7RURNL0I7SUFHSSx5QkNUMkIsRUFBQTs7QURhL0I7RUFDRSxZQUFZLEVBQUE7RUFEZDtJQUlJLHlCQUF5QixFQUFBOztBQUk3QjtFQUNFLGlCRHJDMEIsRUFBQTs7QUN3QzVCO0VBQ0Usa0JEM0NnQixFQUFBOztBQzhDbEI7RUFDRSxZQUFzQjtFQUN0QixrQkFBa0IsRUFBQTs7QUFHcEI7RUFDRSxrQkQ5Q3dCLEVBQUE7O0FDaUQxQjtFQUNFLGlCRHREMEI7RUN1RDFCLFdEcEQwQixFQUFBOztBQ3VENUI7RUFDRSxpQkQxRHlCLEVBQUE7O0FHRDNCOzs7Ozs7Q1I4RUM7QVF0RUQ7RUFDRSxnQkFBZ0IsRUFBQTs7QUFJaEI7RUFDRSx5QkRDMkI7RUNBM0IsK0JEQ3dCO0VDQXhCLGdDREF3QjtFQ0N4Qiw4QkREd0I7RUNFeEIsYUhwQmMsRUFBQTs7QUd1QmhCO0VBQ0Usa0JBQWtCLEVBQUE7O0FBR3BCO0VBQ0UsZ0JIdkJ3QjtFR3dCeEIsaUJIN0JjO0VHOEJkLDZCRFp3QixFQUFBOztBQ2UxQjtFQUNFLGtCQUFrQixFQUFBO0VBRWxCO0lBQ0Usa0JBQWtCO0lBQ2xCLFFBQVE7SUFDUixNQUFNLEVBQUE7O0FBS1o7O0VBSVEsZ0NEN0JxQjtFQzhCckIsV0FBVztFQUNYLFVIbERVO0VHbURWLGtCQUFrQjtFQUNsQixRQUFRO0VBQ1IsVUhsRG1CLEVBQUE7O0FHeUMzQjs7RUFZUSw4QkRyQ3FCO0VDc0NyQixXQUFXO0VBQ1gsVUgxRFU7RUcyRFYsa0JBQWtCO0VBQ2xCLG9CQUE2QjtFQUM3QixXSDFEbUIsRUFBQTs7QUd5QzNCO0VBc0JNLGtCQUFzQyxFQUFBOztBQXRCNUM7RUE0QlUsa0JIeEVRLEVBQUE7O0FHNENsQjtFQWlDWSxhQUFhLEVBQUE7O0FBakN6QjtFQXdDVSxrQkFBc0MsRUFBQTs7QUF4Q2hEO0VBOENNLGtCSHBGb0IsRUFBQTtFR3NDMUI7SUFrRFUsYUFBYSxFQUFBO0VBbER2QjtJQXVEUSxlQUFlLEVBQUE7RUF2RHZCO0lBMkRRLGlCSHBHbUIsRUFBQTs7QUd5RzNCO0VBQ0UsVUFBVTtFQUNWLFNBQVM7RUFDVCxxQkFBcUI7RUFDckIsa0JBQWtCO0VBQ2xCLGdCSC9HMEIsRUFBQTtFRzBHNUI7SUFRSSxxQkFBcUI7SUFDckIsOEJEbkd3QjtJQ29HeEIsaUJIakh3QjtJR2tIeEIsbUJIcEh1QixFQUFBO0VHeUczQjtJQWVJLGVDbkZvRDtJRG9GcEQsa0JIdkh3QjtJR3dIeEIsa0JBQWtCLEVBQUE7SUFqQnRCO01Bb0JNLFdBQVU7TUFDVixrQkFBa0I7TUFDbEIsTUFBTTtNQUNOLFVBQVU7TUFDVixXQUFXO01BQ1gsV0hySVk7TUdzSVoseUJEcEhzQjtNQ3FIdEIsZ0JBQWdCO01BQ2hCLGtCQUFrQixFQUFBO0VBNUJ4QjtJQWlDSSxnQkgxSXVCLEVBQUE7RUd5RzNCO0lBcUNJLDhCQUE4QjtJQUM5QixpQkFBaUIsRUFBQTs7QUVwSXJCO0VBR0ksVUFBVSxFQUFBOztBQUhkO0VBUUkscUJBQXFCLEVBQUE7O0FBSXpCO0VBQ0UsdUJBQXVCLEVBQUEiLCJmaWxlIjoiYnVpbGQva2liYW5hL3gtcGFjay9sZWdhY3kvcGx1Z2lucy9pbmRleF9tYW5hZ2VtZW50L3B1YmxpYy9pbmRleC5zY3NzIn0= */

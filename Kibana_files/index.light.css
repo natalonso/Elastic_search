@@ -1,0 +1,211 @@
+/* 1 */
+/* 1 */
+/**
+ * 1. Extend beta badges to at least 40% of the container's width
+ * 2. Fix for IE to ensure badges are visible outside of a <button> tag
+ */
+/**
+ * 1. Apply margin to all but last item in the flex.
+ * 2. Margin gets flipped because of the row-reverse.
+ */
+/**
+ * 3. Must supply both values to background-size or some browsers apply the single value to both directions
+ */
+/**
+ * 4. Override invalid state with focus state.
+ */
+/**
+ *  Mixin for use in:
+ *  - EuiCard
+ *  - EuiPageContent
+*/
+.vgaVis {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 100%;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
+  position: relative; }
+
+.vgaVis__view {
+  z-index: 0;
+  -webkit-box-flex: 1;
+  -webkit-flex: 1 1 100%;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; }
+  .vgaVis__view .vega-bindings {
+    display: none !important; }
+
+.vgaVis__controls {
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex; }
+  .vgaVis__controls:not(:empty) {
+    padding: 8px 0; }
+  .vgaVis__controls.vgaVis__controls--column {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+        -ms-flex-direction: column;
+            flex-direction: column; }
+  .vgaVis__controls.vgaVis__controls--row {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+        -ms-flex-direction: row;
+            flex-direction: row; }
+    .vgaVis__controls.vgaVis__controls--row > .vega-bind {
+      -webkit-box-flex: 1;
+      -webkit-flex-grow: 1;
+          -ms-flex-positive: 1;
+              flex-grow: 1; }
+  .vgaVis__controls > .vega-bind .vega-bind-name {
+    display: inline-block;
+    width: 104px; }
+  .vgaVis__controls > .vega-bind input[type="range"] {
+    width: 120px;
+    display: inline-block;
+    vertical-align: middle; }
+  .vgaVis__controls > .vega-bind label {
+    margin: 0 0 0 8px; }
+  .vgaVis__controls > .vega-bind select {
+    max-width: 160px; }
+  .vgaVis__controls > .vega-bind .vega-bind-radio label {
+    margin: 0 8px 0 4px; }
+
+.vgaVis__messages {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  margin: auto;
+  opacity: 0.8;
+  z-index: 1;
+  list-style: none; }
+
+.vgaVis__message {
+  margin: 8px; }
+  .vgaVis__message .vgaVis__messageCode {
+    white-space: pre-wrap;
+    padding: 8px; }
+
+.vgaVis__message--warn .vgaVis__messageCode {
+  background-color: #fef6e6;
+  color: #936400; }
+
+.vgaVis__message--err .vgaVis__messageCode {
+  background-color: #f8e9e9;
+  color: #b4251d; }
+
+.vgaVis__tooltip {
+  max-width: 100%; }
+  .vgaVis__tooltip h2 {
+    margin-bottom: 8px; }
+  .vgaVis__tooltip td {
+    max-width: 100%;
+    /* 1 */
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    word-wrap: normal !important;
+    /* 2 */
+    padding-top: 4px;
+    padding-bottom: 4px; }
+  .vgaVis__tooltip td.key {
+    color: #98A2B3;
+    max-width: 160px;
+    text-align: right;
+    padding-right: 4px; }
+  .vgaVis__tooltip td.value {
+    max-width: 240px;
+    text-align: left; }
+  @media only screen and (max-width: 768px) {
+    .vgaVis__tooltip td.key {
+      max-width: 96px; }
+    .vgaVis__tooltip td.value {
+      max-width: 160px; } }
+
+.visEditor--vega .visEditorSidebar__config {
+  padding: 0;
+  position: relative; }
+
+.visEditor--vega .visEditorSidebar__options {
+  scrollbar-width: thin;
+  -webkit-flex-shrink: 1;
+      -ms-flex-negative: 1;
+          flex-shrink: 1;
+  overflow-y: auto; }
+  .visEditor--vega .visEditorSidebar__options::-webkit-scrollbar {
+    width: 16px;
+    height: 16px; }
+  .visEditor--vega .visEditorSidebar__options::-webkit-scrollbar-thumb {
+    background-color: rgba(105, 112, 125, 0.5);
+    border: 6px solid transparent;
+    background-clip: content-box; }
+  .visEditor--vega .visEditorSidebar__options::-webkit-scrollbar-corner, .visEditor--vega .visEditorSidebar__options::-webkit-scrollbar-track {
+    background-color: transparent; }
+
+@media only screen and (max-width: 574px) {
+  .vgaEditor {
+    scrollbar-width: thin;
+    max-height: 240px;
+    overflow-y: auto; }
+    .vgaEditor::-webkit-scrollbar {
+      width: 16px;
+      height: 16px; }
+    .vgaEditor::-webkit-scrollbar-thumb {
+      background-color: rgba(105, 112, 125, 0.5);
+      border: 6px solid transparent;
+      background-clip: content-box; }
+    .vgaEditor::-webkit-scrollbar-corner, .vgaEditor::-webkit-scrollbar-track {
+      background-color: transparent; } }
+
+@media only screen and (min-width: 575px) and (max-width: 767px) {
+  .vgaEditor {
+    scrollbar-width: thin;
+    max-height: 240px;
+    overflow-y: auto; }
+    .vgaEditor::-webkit-scrollbar {
+      width: 16px;
+      height: 16px; }
+    .vgaEditor::-webkit-scrollbar-thumb {
+      background-color: rgba(105, 112, 125, 0.5);
+      border: 6px solid transparent;
+      background-clip: content-box; }
+    .vgaEditor::-webkit-scrollbar-corner, .vgaEditor::-webkit-scrollbar-track {
+      background-color: transparent; } }
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .vgaEditor {
+    scrollbar-width: thin;
+    max-height: 240px;
+    overflow-y: auto; }
+    .vgaEditor::-webkit-scrollbar {
+      width: 16px;
+      height: 16px; }
+    .vgaEditor::-webkit-scrollbar-thumb {
+      background-color: rgba(105, 112, 125, 0.5);
+      border: 6px solid transparent;
+      background-clip: content-box; }
+    .vgaEditor::-webkit-scrollbar-corner, .vgaEditor::-webkit-scrollbar-track {
+      background-color: transparent; } }
+
+.vgaEditor__aceEditorActions {
+  position: absolute;
+  z-index: 1000;
+  top: 0;
+  right: 16px;
+  line-height: 1; }
+/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImJ1aWxkL25vZGVfbW9kdWxlcy9AZWxhc3RpYy9ldWkvc3JjL2dsb2JhbF9zdHlsaW5nL3ZhcmlhYmxlcy9fZm9ybS5zY3NzIiwiYnVpbGQvbm9kZV9tb2R1bGVzL0BlbGFzdGljL2V1aS9zcmMvZ2xvYmFsX3N0eWxpbmcvbWl4aW5zL19iZXRhX2JhZGdlLnNjc3MiLCJidWlsZC9raWJhbmEvc3JjL2xlZ2FjeS9jb3JlX3BsdWdpbnMvdmlzX3R5cGVfdmVnYS9wdWJsaWMvaW5kZXguc2NzcyIsImJ1aWxkL25vZGVfbW9kdWxlcy9AZWxhc3RpYy9ldWkvc3JjL2dsb2JhbF9zdHlsaW5nL21peGlucy9fYnV0dG9uLnNjc3MiLCJidWlsZC9ub2RlX21vZHVsZXMvQGVsYXN0aWMvZXVpL3NyYy9nbG9iYWxfc3R5bGluZy9taXhpbnMvX2Zvcm0uc2NzcyIsImJ1aWxkL25vZGVfbW9kdWxlcy9AZWxhc3RpYy9ldWkvc3JjL2dsb2JhbF9zdHlsaW5nL21peGlucy9fcGFuZWwuc2NzcyIsImJ1aWxkL2tpYmFuYS9zcmMvc3JjL2xlZ2FjeS9jb3JlX3BsdWdpbnMvdmlzX3R5cGVfdmVnYS9wdWJsaWMvX3ZlZ2FfdmlzLnNjc3MiLCJidWlsZC9ub2RlX21vZHVsZXMvQGVsYXN0aWMvZXVpL3NyYy9nbG9iYWxfc3R5bGluZy92YXJpYWJsZXMvX3R5cG9ncmFwaHkuc2NzcyIsImJ1aWxkL25vZGVfbW9kdWxlcy9AZWxhc3RpYy9ldWkvc3JjL2dsb2JhbF9zdHlsaW5nL21peGlucy9fdHlwb2dyYXBoeS5zY3NzIiwiYnVpbGQvbm9kZV9tb2R1bGVzL0BlbGFzdGljL2V1aS9zcmMvZ2xvYmFsX3N0eWxpbmcvdmFyaWFibGVzL19zaXplLnNjc3MiLCJidWlsZC9ub2RlX21vZHVsZXMvQGVsYXN0aWMvZXVpL3NyYy9nbG9iYWxfc3R5bGluZy9mdW5jdGlvbnMvX2NvbG9ycy5zY3NzIiwiYnVpbGQvbm9kZV9tb2R1bGVzL0BlbGFzdGljL2V1aS9zcmMvZ2xvYmFsX3N0eWxpbmcvdmFyaWFibGVzL19jb2xvcnMuc2NzcyIsImJ1aWxkL2tpYmFuYS9zcmMvc3JjL2xlZ2FjeS9jb3JlX3BsdWdpbnMvdmlzX3R5cGVfdmVnYS9wdWJsaWMvX3ZlZ2FfZWRpdG9yLnNjc3MiLCJidWlsZC9ub2RlX21vZHVsZXMvQGVsYXN0aWMvZXVpL3NyYy9nbG9iYWxfc3R5bGluZy9taXhpbnMvX2hlbHBlcnMuc2NzcyIsImJ1aWxkL25vZGVfbW9kdWxlcy9AZWxhc3RpYy9ldWkvc3JjL2dsb2JhbF9zdHlsaW5nL21peGlucy9fcmVzcG9uc2l2ZS5zY3NzIiwiYnVpbGQvbm9kZV9tb2R1bGVzL0BlbGFzdGljL2V1aS9zcmMvZ2xvYmFsX3N0eWxpbmcvdmFyaWFibGVzL196X2luZGV4LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBeUM2RSxNQUFBO0FBQ29CLE1BQUE7QUN6Q2pHOzs7RUNJRTtBQzhCRjs7O0VEMUJFO0FFMERGOztFRnZERTtBRTRMRjs7RUZ6TEU7QUdmRjs7OztDSG9CQztBSXBCRDtFQUNFLG9CQUFhO0VBQWIscUJBQWE7RUFBYixvQkFBYTtFQUFiLGFBQWE7RUFDYixtQkFBYztFQUFkLHNCQUFjO01BQWQsa0JBQWM7VUFBZCxjQUFjO0VBQ2Qsa0JBQWtCLEVBQUE7O0FBSXBCO0VBQ0UsVUFBVTtFQUNWLG1CQUFjO0VBQWQsc0JBQWM7TUFBZCxrQkFBYztVQUFkLGNBQWM7RUFFZCxjQUFjO0VBQ2QsZUFBZTtFQUNmLGdCQUFnQjtFQUNoQixXQUFXO0VBQ1gsWUFBWTtFQUNaLGdCQUFnQixFQUFBO0VBVGxCO0lBYUksd0JBQXdCLEVBQUE7O0FBSTVCO0VDWEUsZUEyQnNEO0VBMUJ0RCxtQkFQcUM7RUM0RHJDLGdCRG5CcUI7RUR0QnJCLG9CQUFhO0VBQWIscUJBQWE7RUFBYixvQkFBYTtFQUFiLGFBQWEsRUFBQTtFQUZmO0lBS0ksY0FBb0IsRUFBQTtFQUx4QjtJQVNJLDRCQUFzQjtJQUF0Qiw2QkFBc0I7SUFBdEIsOEJBQXNCO1FBQXRCLDBCQUFzQjtZQUF0QixzQkFBc0IsRUFBQTtFQVQxQjtJQWFJLDhCQUFtQjtJQUFuQiw2QkFBbUI7SUFBbkIsMkJBQW1CO1FBQW5CLHVCQUFtQjtZQUFuQixtQkFBbUIsRUFBQTtJQWJ2QjtNQWdCTSxtQkFBWTtNQUFaLG9CQUFZO1VBQVosb0JBQVk7Y0FBWixZQUFZLEVBQUE7RUFoQmxCO0lBc0JNLHFCQUFxQjtJQUNyQixZQUFnQyxFQUFBO0VBdkJ0QztJQTJCTSxZQUFxQjtJQUNyQixxQkFBcUI7SUFDckIsc0JBQXNCLEVBQUE7RUE3QjVCO0lBaUNNLGlCR3REcUIsRUFBQTtFSHFCM0I7SUFxQ00sZ0JBQXdCLEVBQUE7RUFyQzlCO0lBeUNNLG1CRy9Ec0IsRUFBQTs7QUhzRTVCO0VBQ0Usa0JBQWtCO0VBQ2xCLE1BQU07RUFDTixXQUFXO0VBQ1gsWUFBWTtFQUNaLFlBQVk7RUFDWixVQUFVO0VBQ1YsZ0JBQWdCLEVBQUE7O0FBR2xCO0VBQ0UsV0doRnlCLEVBQUE7RUgrRTNCO0lBSUkscUJBQXFCO0lBQ3JCLFlHcEZ1QixFQUFBOztBSHdGM0I7RUFFRSx5Qkl0RjZDO0VKdUY3QyxjSWxGMkMsRUFBQTs7QUpxRjdDO0VBRUUseUJJNUY2QztFSjZGN0MsY0l4RjJDLEVBQUE7O0FKK0Y3QztFQUNFLGVBQWUsRUFBQTtFQURqQjtJQUlJLGtCRzVHdUIsRUFBQTtFSHdHM0I7SUVXRSxlQUFlO0lBQUUsTUFBQTtJQUNqQiwyQkFBMkI7SUFDM0Isa0NBQWtDO0lBQ2xDLDhCQUE4QjtJQUM5Qiw0QkFBNEI7SUFBRSxNQUFBO0lGTjVCLGdCR2xId0I7SUhtSHhCLG1CR25Id0IsRUFBQTtFSHlHNUI7SUFjSSxjS3RHeUI7SUx1R3pCLGdCQUF3QjtJQUN4QixpQkFBaUI7SUFDakIsa0JHMUh3QixFQUFBO0VIeUc1QjtJQW9CSSxnQkFBeUI7SUFDekIsZ0JBQWdCLEVBQUE7RUFHbEI7SUF4QkY7TUEwQk0sZUFBdUIsRUFBQTtJQTFCN0I7TUE2Qk0sZ0JBQXdCLEVBQUEsRUFDekI7O0FNeklMO0VBRUksVUFBVTtFQUNWLGtCQUFrQixFQUFBOztBQUh0QjtFQzhCRSxxQkFBcUI7RUR0Qm5CLHNCQUFjO01BQWQsb0JBQWM7VUFBZCxjQUFjO0VBQ2QsZ0JBQWdCLEVBQUE7RUN3QmxCO0lBQ0UsV0psQ2M7SUltQ2QsWUpuQ2MsRUFBQTtFSXNDaEI7SUFDRSwwQ0FBd0Q7SUFDeEQsNkJBQTZDO0lBQzdDLDRCQUE0QixFQUFBO0VBRzlCO0lBRUUsNkJBQTZCLEVBQUE7O0FDWHZCO0VGdEJWO0lDaUJFLHFCQUFxQjtJRGRuQixpQkFBeUI7SUFDekIsZ0JBQWdCLEVBQUE7SUNnQmxCO01BQ0UsV0psQ2M7TUltQ2QsWUpuQ2MsRUFBQTtJSXNDaEI7TUFDRSwwQ0FBd0Q7TUFDeEQsNkJBQTZDO01BQzdDLDRCQUE0QixFQUFBO0lBRzlCO01BRUUsNkJBQTZCLEVBQUEsRUFDOUI7O0FDUE87RUYzQlY7SUNpQkUscUJBQXFCO0lEZG5CLGlCQUF5QjtJQUN6QixnQkFBZ0IsRUFBQTtJQ2dCbEI7TUFDRSxXSmxDYztNSW1DZCxZSm5DYyxFQUFBO0lJc0NoQjtNQUNFLDBDQUF3RDtNQUN4RCw2QkFBNkM7TUFDN0MsNEJBQTRCLEVBQUE7SUFHOUI7TUFFRSw2QkFBNkIsRUFBQSxFQUM5Qjs7QUNQTztFRjNCVjtJQ2lCRSxxQkFBcUI7SURkbkIsaUJBQXlCO0lBQ3pCLGdCQUFnQixFQUFBO0lDZ0JsQjtNQUNFLFdKbENjO01JbUNkLFlKbkNjLEVBQUE7SUlzQ2hCO01BQ0UsMENBQXdEO01BQ3hELDZCQUE2QztNQUM3Qyw0QkFBNEIsRUFBQTtJQUc5QjtNQUVFLDZCQUE2QixFQUFBLEVBQzlCOztBRDFCSDtFQUNFLGtCQUFrQjtFQUNsQixhR1B3QjtFSFF4QixNQUFNO0VBRU4sV0gxQmdCO0VHMkJoQixjQUFjLEVBQUEiLCJmaWxlIjoiYnVpbGQva2liYW5hL3NyYy9sZWdhY3kvY29yZV9wbHVnaW5zL3Zpc190eXBlX3ZlZ2EvcHVibGljL2luZGV4LnNjc3MifQ== */

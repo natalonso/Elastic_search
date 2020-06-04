@@ -1,0 +1,2696 @@
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+
+/* Default standalone editor font */
+.monaco-editor {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "HelveticaNeue-Light", "Ubuntu", "Droid Sans", sans-serif;
+}
+
+.monaco-menu .monaco-action-bar.vertical .action-item .action-menu-item:focus .action-label {
+	stroke-width: 1.2px;
+}
+
+.monaco-editor.vs-dark .monaco-menu .monaco-action-bar.vertical .action-menu-item:focus .action-label,
+.monaco-editor.hc-black .monaco-menu .monaco-action-bar.vertical .action-menu-item:focus .action-label {
+	stroke-width: 1.2px;
+}
+
+.monaco-editor-hover p {
+	margin: 0;
+}
+
+/* The hc-black theme is already high contrast optimized */
+.monaco-editor.hc-black {
+	-ms-high-contrast-adjust: none;
+}
+/* In case the browser goes into high contrast mode and the editor is not configured with the hc-black theme */
+@media screen and (-ms-high-contrast:active) {
+
+	/* current line highlight */
+	.monaco-editor.vs .view-overlays .current-line,
+	.monaco-editor.vs-dark .view-overlays .current-line {
+		border-color: windowtext !important;
+		border-left: 0;
+		border-right: 0;
+	}
+
+	/* view cursors */
+	.monaco-editor.vs .cursor,
+	.monaco-editor.vs-dark .cursor {
+		background-color: windowtext !important;
+	}
+	/* dnd target */
+	.monaco-editor.vs .dnd-target,
+	.monaco-editor.vs-dark .dnd-target {
+		border-color: windowtext !important;
+	}
+
+	/* selected text background */
+	.monaco-editor.vs .selected-text,
+	.monaco-editor.vs-dark .selected-text {
+		background-color: highlight !important;
+	}
+
+	/* allow the text to have a transparent background. */
+	.monaco-editor.vs .view-line,
+	.monaco-editor.vs-dark .view-line {
+		-ms-high-contrast-adjust: none;
+	}
+
+	/* text color */
+	.monaco-editor.vs .view-line span,
+	.monaco-editor.vs-dark .view-line span {
+		color: windowtext !important;
+	}
+	/* selected text color */
+	.monaco-editor.vs .view-line span.inline-selected-text,
+	.monaco-editor.vs-dark .view-line span.inline-selected-text {
+		color: highlighttext !important;
+	}
+
+	/* allow decorations */
+	.monaco-editor.vs .view-overlays,
+	.monaco-editor.vs-dark .view-overlays {
+		-ms-high-contrast-adjust: none;
+	}
+
+	/* various decorations */
+	.monaco-editor.vs .selectionHighlight,
+	.monaco-editor.vs-dark .selectionHighlight,
+	.monaco-editor.vs .wordHighlight,
+	.monaco-editor.vs-dark .wordHighlight,
+	.monaco-editor.vs .wordHighlightStrong,
+	.monaco-editor.vs-dark .wordHighlightStrong,
+	.monaco-editor.vs .reference-decoration,
+	.monaco-editor.vs-dark .reference-decoration {
+		border: 2px dotted highlight !important;
+		background: transparent !important;
+		box-sizing: border-box;
+	}
+	.monaco-editor.vs .rangeHighlight,
+	.monaco-editor.vs-dark .rangeHighlight {
+		background: transparent !important;
+		border: 1px dotted activeborder !important;
+		box-sizing: border-box;
+	}
+	.monaco-editor.vs .bracket-match,
+	.monaco-editor.vs-dark .bracket-match {
+		border-color: windowtext !important;
+		background: transparent !important;
+	}
+
+	/* find widget */
+	.monaco-editor.vs .findMatch,
+	.monaco-editor.vs-dark .findMatch,
+	.monaco-editor.vs .currentFindMatch,
+	.monaco-editor.vs-dark .currentFindMatch {
+		border: 2px dotted activeborder !important;
+		background: transparent !important;
+		box-sizing: border-box;
+	}
+	.monaco-editor.vs .find-widget,
+	.monaco-editor.vs-dark .find-widget {
+		border: 1px solid windowtext;
+	}
+
+	/* list - used by suggest widget */
+	.monaco-editor.vs .monaco-list .monaco-list-row,
+	.monaco-editor.vs-dark .monaco-list .monaco-list-row {
+		-ms-high-contrast-adjust: none;
+		color: windowtext !important;
+	}
+	.monaco-editor.vs .monaco-list .monaco-list-row.focused,
+	.monaco-editor.vs-dark .monaco-list .monaco-list-row.focused {
+		color: highlighttext !important;
+		background-color: highlight !important;
+	}
+	.monaco-editor.vs .monaco-list .monaco-list-row:hover,
+	.monaco-editor.vs-dark .monaco-list .monaco-list-row:hover {
+		background: transparent !important;
+		border: 1px solid highlight;
+		box-sizing: border-box;
+	}
+
+	/* tree */
+	.monaco-editor.vs .monaco-tree .monaco-tree-row,
+	.monaco-editor.vs-dark .monaco-tree .monaco-tree-row {
+		-ms-high-contrast-adjust: none;
+		color: windowtext !important;
+	}
+	.monaco-editor.vs .monaco-tree .monaco-tree-row.selected,
+	.monaco-editor.vs-dark .monaco-tree .monaco-tree-row.selected,
+	.monaco-editor.vs .monaco-tree .monaco-tree-row.focused,
+	.monaco-editor.vs-dark .monaco-tree .monaco-tree-row.focused {
+		color: highlighttext !important;
+		background-color: highlight !important;
+	}
+	.monaco-editor.vs .monaco-tree .monaco-tree-row:hover,
+	.monaco-editor.vs-dark .monaco-tree .monaco-tree-row:hover {
+		background: transparent !important;
+		border: 1px solid highlight;
+		box-sizing: border-box;
+	}
+
+	/* scrollbars */
+	.monaco-editor.vs .monaco-scrollable-element > .scrollbar,
+	.monaco-editor.vs-dark .monaco-scrollable-element > .scrollbar {
+		-ms-high-contrast-adjust: none;
+		background: background !important;
+		border: 1px solid windowtext;
+		box-sizing: border-box;
+	}
+	.monaco-editor.vs .monaco-scrollable-element > .scrollbar > .slider,
+	.monaco-editor.vs-dark .monaco-scrollable-element > .scrollbar > .slider {
+		background: windowtext !important;
+	}
+	.monaco-editor.vs .monaco-scrollable-element > .scrollbar > .slider:hover,
+	.monaco-editor.vs-dark .monaco-scrollable-element > .scrollbar > .slider:hover {
+		background: highlight !important;
+	}
+	.monaco-editor.vs .monaco-scrollable-element > .scrollbar > .slider.active,
+	.monaco-editor.vs-dark .monaco-scrollable-element > .scrollbar > .slider.active {
+		background: highlight !important;
+	}
+
+	/* overview ruler */
+	.monaco-editor.vs .decorationsOverviewRuler,
+	.monaco-editor.vs-dark .decorationsOverviewRuler {
+		opacity: 0;
+	}
+
+	/* minimap */
+	.monaco-editor.vs .minimap,
+	.monaco-editor.vs-dark .minimap {
+		display: none;
+	}
+
+	/* squiggles */
+	.monaco-editor.vs .squiggly-d-error,
+	.monaco-editor.vs-dark .squiggly-d-error {
+		background: transparent !important;
+		border-bottom: 4px double #E47777;
+	}
+	.monaco-editor.vs .squiggly-c-warning,
+	.monaco-editor.vs-dark .squiggly-c-warning {
+		border-bottom: 4px double #71B771;
+	}
+	.monaco-editor.vs .squiggly-b-info,
+	.monaco-editor.vs-dark .squiggly-b-info {
+		border-bottom: 4px double #71B771;
+	}
+	.monaco-editor.vs .squiggly-a-hint,
+	.monaco-editor.vs-dark .squiggly-a-hint {
+		border-bottom: 4px double #6c6c6c;
+	}
+
+	/* contextmenu */
+	.monaco-editor.vs .monaco-menu .monaco-action-bar.vertical .action-menu-item:focus .action-label,
+	.monaco-editor.vs-dark .monaco-menu .monaco-action-bar.vertical .action-menu-item:focus .action-label {
+		-ms-high-contrast-adjust: none;
+		color: highlighttext !important;
+		background-color: highlight !important;
+	}
+	.monaco-editor.vs .monaco-menu .monaco-action-bar.vertical .action-menu-item:hover .action-label,
+	.monaco-editor.vs-dark .monaco-menu .monaco-action-bar.vertical .action-menu-item:hover .action-label {
+		-ms-high-contrast-adjust: none;
+		background: transparent !important;
+		border: 1px solid highlight;
+		box-sizing: border-box;
+	}
+
+	/* diff editor */
+	.monaco-diff-editor.vs .diffOverviewRuler,
+	.monaco-diff-editor.vs-dark .diffOverviewRuler {
+		display: none;
+	}
+	.monaco-editor.vs .line-insert,
+	.monaco-editor.vs-dark .line-insert,
+	.monaco-editor.vs .line-delete,
+	.monaco-editor.vs-dark .line-delete {
+		background: transparent !important;
+		border: 1px solid highlight !important;
+		box-sizing: border-box;
+	}
+	.monaco-editor.vs .char-insert,
+	.monaco-editor.vs-dark .char-insert,
+	.monaco-editor.vs .char-delete,
+	.monaco-editor.vs-dark .char-delete {
+		background: transparent !important;
+	}
+}
+
+/*.monaco-editor.vs [tabindex="0"]:focus {
+	outline: 1px solid rgba(0, 122, 204, 0.4);
+	outline-offset: -1px;
+	opacity: 1 !important;
+}
+
+.monaco-editor.vs-dark [tabindex="0"]:focus {
+	outline: 1px solid rgba(14, 99, 156, 0.6);
+	outline-offset: -1px;
+	opacity: 1 !important;
+}*/
+
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-aria-container {
+	position: absolute; /* try to hide from window but not from screen readers */
+	left:-999em;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/* -------------------- IE10 remove auto clear button -------------------- */
+
+::-ms-clear {
+	display: none;
+}
+
+/* All widgets */
+/* I am not a big fan of this rule */
+.monaco-editor .editor-widget input {
+	color: inherit;
+}
+
+/* -------------------- Editor -------------------- */
+
+.monaco-editor {
+	position: relative;
+	overflow: visible;
+	-webkit-text-size-adjust: 100%;
+	-webkit-font-feature-settings: "liga" off, "calt" off;
+	font-feature-settings: "liga" off, "calt" off;
+}
+.monaco-editor.enable-ligatures {
+	-webkit-font-feature-settings: "liga" on, "calt" on;
+	font-feature-settings: "liga" on, "calt" on;
+}
+
+/* -------------------- Misc -------------------- */
+
+.monaco-editor .overflow-guard {
+	position: relative;
+	overflow: hidden;
+}
+
+.monaco-editor .view-overlays {
+	position: absolute;
+	top: 0;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-editor .vs-whitespace {
+	display:inline-block;
+}
+
+
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-editor .inputarea {
+	min-width: 0;
+	min-height: 0;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	outline: none !important;
+	resize: none;
+	border: none;
+	overflow: hidden;
+	color: transparent;
+	background-color: transparent;
+}
+/*.monaco-editor .inputarea {
+	position: fixed !important;
+	width: 800px !important;
+	height: 500px !important;
+	top: initial !important;
+	left: initial !important;
+	bottom: 0 !important;
+	right: 0 !important;
+	color: black !important;
+	background: white !important;
+	line-height: 15px !important;
+	font-size: 14px !important;
+}*/
+.monaco-editor .inputarea.ime-input {
+	z-index: 10;
+}
+
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-editor .margin-view-overlays .line-numbers {
+	position: absolute;
+	text-align: right;
+	display: inline-block;
+	vertical-align: middle;
+	box-sizing: border-box;
+	cursor: default;
+	height: 100%;
+}
+
+.monaco-editor .relative-current-line-number {
+	text-align: left;
+	display: inline-block;
+	width: 100%;
+}
+
+.monaco-editor .margin-view-overlays .line-numbers {
+	cursor: -webkit-image-set(
+		url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNSIgaGVpZ2h0PSIyNSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCAxNSAyNSIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMTUgMjU7Ij48cG9seWdvbiBzdHlsZT0iZmlsbDojRkZGRkZGO3N0cm9rZTojMDAwMDAwIiBwb2ludHM9IjE0LjUsMS4yIDEuOSwxMy44IDcsMTMuOCAzLjIsMjEuNSA2LjMsMjIuNSAxMC4xLDE0LjkgMTQuNSwxOCIvPjwvc3ZnPg==") 1x,
+		url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjBweCIgeT0iMHB4IiB3aWR0aD0iMzAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCAzMCA1MCIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzAgNTA7Ij48cG9seWdvbiBzdHlsZT0iZmlsbDojRkZGRkZGO3N0cm9rZTojMDAwMDAwO3N0cm9rZS13aWR0aDoyOyIgcG9pbnRzPSIyOSwyLjQgMy44LDI3LjYgMTQsMjcuNiA2LjQsNDMgMTIuNiw0NSAyMC4yLDI5LjggMjksMzYiLz48L3N2Zz4K") 2x
+	) 30 0, default;
+}
+
+.monaco-editor.mac .margin-view-overlays .line-numbers {
+	cursor: -webkit-image-set(
+		url("data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgMTMgMTkiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDEzIDE5OyIgd2lkdGg9IjEzIiBoZWlnaHQ9IjE5Ij48c3R5bGUgdHlwZT0idGV4dC9jc3MiPi5zdDB7c3Ryb2tlOiNGRkZGRkY7c3Ryb2tlLW1pdGVybGltaXQ6MTA7fTwvc3R5bGU+PHRpdGxlPmZsaXBwZWQtY3Vyc29yLW1hYzwvdGl0bGU+PHBhdGggY2xhc3M9InN0MCIgZD0iTTUuMywxNi42bDEuNi00LjdIMi4xTDEyLjUsMS4ydjE0LjRMOS43LDEzbC0xLjYsNC42Yy0wLjIsMC41LTAuOCwwLjgtMS4zLDAuNkw2LDE3LjkgQzUuNCwxNy43LDUuMSwxNy4yLDUuMywxNi42eiIvPjwvc3ZnPgo=") 1x,
+		url("data:image/svg+xml;base64,CjxzdmcgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmlld0JveD0iMCAwIDI2IDM4IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAyNiAzODsiIHdpZHRoPSIyNiIgaGVpZ2h0PSIzOCI+PHN0eWxlIHR5cGU9InRleHQvY3NzIj4uc3Qwe3N0cm9rZTojRkZGRkZGO3N0cm9rZS1taXRlcmxpbWl0OjEwO308L3N0eWxlPgk8dGl0bGU+ZmxpcHBlZC1jdXJzb3ItbWFjPC90aXRsZT48cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTAuNiwzMy4ybDMuMi05LjRINC4yTDI1LDIuNHYyOC44TDE5LjQsMjZsLTMuMiw5LjJjLTAuNCwxLTEuNiwxLjYtMi42LDEuMkwxMiwzNS44IEMxMC44LDM1LjQsMTAuMiwzNC40LDEwLjYsMzMuMnoiLz48L3N2Zz4K") 2x
+	) 24 3, default;
+}
+
+.monaco-editor .margin-view-overlays .line-numbers.lh-odd {
+	margin-top: 1px;
+}
+
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-editor .view-overlays .current-line {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	box-sizing: border-box;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-editor .margin-view-overlays .current-line {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	box-sizing: border-box;
+}
+
+.monaco-editor .margin-view-overlays .current-line.current-line-margin.current-line-margin-both {
+	border-right: 0;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/*
+	Keeping name short for faster parsing.
+	cdr = core decorations rendering (div)
+*/
+.monaco-editor .lines-content .cdr {
+	position: absolute;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/* Arrows */
+.monaco-scrollable-element > .scrollbar > .up-arrow {
+	background: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTEgMTEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTkuNDgwNDYsOC45NjE1bDEuMjYsLTEuMjZsLTUuMDQsLTUuMDRsLTUuNDYsNS4wNGwxLjI2LDEuMjZsNC4yLC0zLjc4bDMuNzgsMy43OHoiIGZpbGw9IiM0MjQyNDIiLz48L3N2Zz4=");
+	cursor: pointer;
+}
+.monaco-scrollable-element > .scrollbar > .down-arrow {
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMSAxMSI+PHBhdGggdHJhbnNmb3JtPSJyb3RhdGUoLTE4MCA1LjQ5MDQ1OTkxODk3NTgzLDUuODExNTAwMDcyNDc5MjQ4KSIgZmlsbD0iIzQyNDI0MiIgZD0ibTkuNDgwNDYsOC45NjE1bDEuMjYsLTEuMjZsLTUuMDQsLTUuMDRsLTUuNDYsNS4wNGwxLjI2LDEuMjZsNC4yLC0zLjc4bDMuNzgsMy43OHoiLz48L3N2Zz4=");
+	cursor: pointer;
+}
+.monaco-scrollable-element > .scrollbar > .left-arrow {
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMSAxMSI+PHBhdGggdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDUuNDkwNDU5OTE4OTc1ODMxLDUuNDMxMzgyMTc5MjYwMjU0KSIgZmlsbD0iIzQyNDI0MiIgZD0ibTkuNDgwNDYsOC41ODEzOGwxLjI2LC0xLjI2bC01LjA0LC01LjA0bC01LjQ2LDUuMDRsMS4yNiwxLjI2bDQuMiwtMy43OGwzLjc4LDMuNzh6Ii8+PC9zdmc+");
+	cursor: pointer;
+}
+.monaco-scrollable-element > .scrollbar > .right-arrow {
+	background: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTEgMTEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggdHJhbnNmb3JtPSJyb3RhdGUoOTAgNS42MTcxNjUwODg2NTM1NjQ1LDUuNTU4MDg5NzMzMTIzNzgpICIgZmlsbD0iIzQyNDI0MiIgZD0ibTkuNjA3MTcsOC43MDgwOWwxLjI2LC0xLjI2bC01LjA0LC01LjA0bC01LjQ2LDUuMDRsMS4yNiwxLjI2bDQuMiwtMy43OGwzLjc4LDMuNzh6Ii8+PC9zdmc+");
+	cursor: pointer;
+}
+
+.hc-black .monaco-scrollable-element > .scrollbar > .up-arrow,
+.vs-dark .monaco-scrollable-element > .scrollbar > .up-arrow {
+	background: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTEgMTEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0ibTkuNDgwNDYsOC45NjE1bDEuMjYsLTEuMjZsLTUuMDQsLTUuMDRsLTUuNDYsNS4wNGwxLjI2LDEuMjZsNC4yLC0zLjc4bDMuNzgsMy43OHoiIGZpbGw9IiNFOEU4RTgiLz48L3N2Zz4=");
+}
+.hc-black .monaco-scrollable-element > .scrollbar > .down-arrow,
+.vs-dark .monaco-scrollable-element > .scrollbar > .down-arrow {
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMSAxMSI+PHBhdGggdHJhbnNmb3JtPSJyb3RhdGUoLTE4MCA1LjQ5MDQ1OTkxODk3NTgzLDUuODExNTAwMDcyNDc5MjQ4KSIgZmlsbD0iI0U4RThFOCIgZD0ibTkuNDgwNDYsOC45NjE1bDEuMjYsLTEuMjZsLTUuMDQsLTUuMDRsLTUuNDYsNS4wNGwxLjI2LDEuMjZsNC4yLC0zLjc4bDMuNzgsMy43OHoiLz48L3N2Zz4=");
+}
+.hc-black .monaco-scrollable-element > .scrollbar > .left-arrow,
+.vs-dark .monaco-scrollable-element > .scrollbar > .left-arrow {
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMSAxMSI+PHBhdGggdHJhbnNmb3JtPSJyb3RhdGUoLTkwIDUuNDkwNDU5OTE4OTc1ODMxLDUuNDMxMzgyMTc5MjYwMjU0KSIgZmlsbD0iI0U4RThFOCIgZD0ibTkuNDgwNDYsOC41ODEzOGwxLjI2LC0xLjI2bC01LjA0LC01LjA0bC01LjQ2LDUuMDRsMS4yNiwxLjI2bDQuMiwtMy43OGwzLjc4LDMuNzh6Ii8+PC9zdmc+");
+}
+.hc-black .monaco-scrollable-element > .scrollbar > .right-arrow,
+.vs-dark .monaco-scrollable-element > .scrollbar > .right-arrow {
+	background: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMTEgMTEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggdHJhbnNmb3JtPSJyb3RhdGUoOTAgNS42MTcxNjUwODg2NTM1NjQ1LDUuNTU4MDg5NzMzMTIzNzgpICIgZmlsbD0iI0U4RThFOCIgZD0ibTkuNjA3MTcsOC43MDgwOWwxLjI2LC0xLjI2bC01LjA0LC01LjA0bC01LjQ2LDUuMDRsMS4yNiwxLjI2bDQuMiwtMy43OGwzLjc4LDMuNzh6Ii8+PC9zdmc+");
+}
+
+.monaco-scrollable-element > .visible {
+	opacity: 1;
+
+	/* Background rule added for IE9 - to allow clicks on dom node */
+	background:rgba(0,0,0,0);
+
+	transition: opacity 100ms linear;
+}
+.monaco-scrollable-element > .invisible {
+	opacity: 0;
+	pointer-events: none;
+}
+.monaco-scrollable-element > .invisible.fade {
+	transition: opacity 800ms linear;
+}
+
+/* Scrollable Content Inset Shadow */
+.monaco-scrollable-element > .shadow {
+	position: absolute;
+	display: none;
+}
+.monaco-scrollable-element > .shadow.top {
+	display: block;
+	top: 0;
+	left: 3px;
+	height: 3px;
+	width: 100%;
+	box-shadow: #DDD 0 6px 6px -6px inset;
+}
+.monaco-scrollable-element > .shadow.left {
+	display: block;
+	top: 3px;
+	left: 0;
+	height: 100%;
+	width: 3px;
+	box-shadow: #DDD 6px 0 6px -6px inset;
+}
+.monaco-scrollable-element > .shadow.top-left-corner {
+	display: block;
+	top: 0;
+	left: 0;
+	height: 3px;
+	width: 3px;
+}
+.monaco-scrollable-element > .shadow.top.left {
+	box-shadow: #DDD 6px 6px 6px -6px inset;
+}
+
+/* ---------- Default Style ---------- */
+
+.vs .monaco-scrollable-element > .scrollbar > .slider {
+	background: rgba(100, 100, 100, .4);
+}
+.vs-dark .monaco-scrollable-element > .scrollbar > .slider {
+	background: rgba(121, 121, 121, .4);
+}
+.hc-black .monaco-scrollable-element > .scrollbar > .slider {
+	background: rgba(111, 195, 223, .6);
+}
+
+.monaco-scrollable-element > .scrollbar > .slider:hover {
+	background: rgba(100, 100, 100, .7);
+}
+.hc-black .monaco-scrollable-element > .scrollbar > .slider:hover {
+	background: rgba(111, 195, 223, .8);
+}
+
+.monaco-scrollable-element > .scrollbar > .slider.active {
+	background: rgba(0, 0, 0, .6);
+}
+.vs-dark .monaco-scrollable-element > .scrollbar > .slider.active {
+	background: rgba(191, 191, 191, .4);
+}
+.hc-black .monaco-scrollable-element > .scrollbar > .slider.active {
+	background: rgba(111, 195, 223, 1);
+}
+
+.vs-dark .monaco-scrollable-element .shadow.top {
+	box-shadow: none;
+}
+
+.vs-dark .monaco-scrollable-element .shadow.left {
+	box-shadow: #000 6px 0 6px -6px inset;
+}
+
+.vs-dark .monaco-scrollable-element .shadow.top.left {
+	box-shadow: #000 6px 6px 6px -6px inset;
+}
+
+.hc-black .monaco-scrollable-element .shadow.top {
+	box-shadow: none;
+}
+
+.hc-black .monaco-scrollable-element .shadow.left {
+	box-shadow: none;
+}
+
+.hc-black .monaco-scrollable-element .shadow.top.left {
+	box-shadow: none;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-editor .glyph-margin {
+	position: absolute;
+	top: 0;
+}
+
+/*
+	Keeping name short for faster parsing.
+	cgmr = core glyph margin rendering (div)
+*/
+.monaco-editor .margin-view-overlays .cgmr {
+	position: absolute;
+}
+
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/*
+	Keeping name short for faster parsing.
+	cigr = core ident guides rendering (div)
+*/
+.monaco-editor .lines-content .cigr {
+	position: absolute;
+}
+.monaco-editor .lines-content .cigra {
+	position: absolute;
+}
+
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/* Uncomment to see lines flashing when they're painted */
+/*.monaco-editor .view-lines > .view-line {
+	background-color: none;
+	animation-name: flash-background;
+	animation-duration: 800ms;
+}
+@keyframes flash-background {
+	0%   { background-color: lightgreen; }
+	100% { background-color: none }
+}*/
+
+.monaco-editor.no-user-select .lines-content,
+.monaco-editor.no-user-select .view-line,
+.monaco-editor.no-user-select .view-lines {
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+.monaco-editor .view-lines {
+	cursor: text;
+	white-space: nowrap;
+}
+
+.monaco-editor.vs-dark.mac .view-lines,
+.monaco-editor.hc-black.mac .view-lines {
+	cursor: -webkit-image-set(url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAQAAAC1+jfqAAAAL0lEQVQoz2NgCD3x//9/BhBYBWdhgFVAiVW4JBFKGIa4AqD0//9D3pt4I4tAdAMAHTQ/j5Zom30AAAAASUVORK5CYII=) 1x, url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAQAAADZc7J/AAAAz0lEQVRIx2NgYGBY/R8I/vx5eelX3n82IJ9FxGf6tksvf/8FiTMQAcAGQMDvSwu09abffY8QYSAScNk45G198eX//yev73/4///701eh//kZSARckrNBRvz//+8+6ZohwCzjGNjdgQxkAg7B9WADeBjIBqtJCbhRA0YNoIkBSNmaPEMoNmA0FkYNoFKhapJ6FGyAH3nauaSmPfwI0v/3OukVi0CIZ+F25KrtYcx/CTIy0e+rC7R1Z4KMICVTQQ14feVXIbR695u14+Ir4gwAAD49E54wc1kWAAAAAElFTkSuQmCC) 2x) 5 8, text;
+}
+
+.monaco-editor .view-line {
+	position: absolute;
+	width: 100%;
+}
+
+/* TODO@tokenization bootstrap fix */
+/*.monaco-editor .view-line > span > span {
+	float: none;
+	min-height: inherit;
+	margin-left: inherit;
+}*/
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+.monaco-editor .lines-decorations {
+	position: absolute;
+	top: 0;
+	background: white;
+}
+
+/*
+	Keeping name short for faster parsing.
+	cldr = core lines decorations rendering (div)
+*/
+.monaco-editor .margin-view-overlays .cldr {
+	position: absolute;
+	height: 100%;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/*
+	Keeping name short for faster parsing.
+	cmdr = core margin decorations rendering (div)
+*/
+.monaco-editor .margin-view-overlays .cmdr {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/* START cover the case that slider is visible on mouseover */
+.monaco-editor .minimap.slider-mouseover .minimap-slider {
+	opacity: 0;
+	transition: opacity 100ms linear;
+}
+.monaco-editor .minimap.slider-mouseover:hover .minimap-slider {
+	opacity: 1;
+}
+.monaco-editor .minimap.slider-mouseover .minimap-slider.active {
+	opacity: 1;
+}
+/* END cover the case that slider is visible on mouseover */
+
+.monaco-editor .minimap-shadow-hidden {
+	position: absolute;
+	width: 0;
+}
+.monaco-editor .minimap-shadow-visible {
+	position: absolute;
+	left: -6px;
+	width: 6px;
+}
+
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+.monaco-editor .overlayWidgets {
+	position: absolute;
+	top: 0;
+	left:0;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-editor .view-ruler {
+	position: absolute;
+	top: 0;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-editor .scroll-decoration {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 6px;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+/*
+	Keeping name short for faster parsing.
+	cslr = core selections layer rendering (div)
+*/
+.monaco-editor .lines-content .cslr {
+	position: absolute;
+}
+
+.monaco-editor			.top-left-radius		{ border-top-left-radius: 3px; }
+.monaco-editor			.bottom-left-radius		{ border-bottom-left-radius: 3px; }
+.monaco-editor			.top-right-radius		{ border-top-right-radius: 3px; }
+.monaco-editor			.bottom-right-radius	{ border-bottom-right-radius: 3px; }
+
+.monaco-editor.hc-black .top-left-radius		{ border-top-left-radius: 0; }
+.monaco-editor.hc-black .bottom-left-radius		{ border-bottom-left-radius: 0; }
+.monaco-editor.hc-black .top-right-radius		{ border-top-right-radius: 0; }
+.monaco-editor.hc-black .bottom-right-radius	{ border-bottom-right-radius: 0; }
+
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+.monaco-editor .cursors-layer {
+	position: absolute;
+	top: 0;
+}
+
+.monaco-editor .cursors-layer > .cursor {
+	position: absolute;
+	cursor: text;
+	overflow: hidden;
+}
+
+/* -- smooth-caret-animation -- */
+.monaco-editor .cursors-layer.cursor-smooth-caret-animation > .cursor {
+	transition: 80ms;
+}
+
+/* -- block-outline-style -- */
+.monaco-editor .cursors-layer.cursor-block-outline-style > .cursor {
+	box-sizing: border-box;
+	background: transparent !important;
+	border-style: solid;
+	border-width: 1px;
+}
+
+/* -- underline-style -- */
+.monaco-editor .cursors-layer.cursor-underline-style > .cursor {
+	border-bottom-width: 2px;
+	border-bottom-style: solid;
+	background: transparent !important;
+	box-sizing: border-box;
+}
+
+/* -- underline-thin-style -- */
+.monaco-editor .cursors-layer.cursor-underline-thin-style > .cursor {
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	background: transparent !important;
+	box-sizing: border-box;
+}
+
+@keyframes monaco-cursor-smooth {
+	0%,
+	20% {
+		opacity: 1;
+	}
+	60%,
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes monaco-cursor-phase {
+	0%,
+	20% {
+		opacity: 1;
+	}
+	90%,
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes monaco-cursor-expand {
+	0%,
+	20% {
+		transform: scaleY(1);
+	}
+	80%,
+	100% {
+		transform: scaleY(0);
+	}
+}
+
+.cursor-smooth {
+	animation: monaco-cursor-smooth 0.5s ease-in-out 0s 20 alternate;
+}
+
+.cursor-phase {
+	animation: monaco-cursor-phase 0.5s ease-in-out 0s 20 alternate;
+}
+
+.cursor-expand > .cursor {
+	animation: monaco-cursor-expand 0.5s ease-in-out 0s 20 alternate;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+/* ---------- DiffEditor ---------- */
+
+.monaco-diff-editor .diffOverview {
+	z-index: 9;
+}
+
+/* colors not externalized: using transparancy on background */
+.monaco-diff-editor.vs			.diffOverview { background: rgba(0, 0, 0, 0.03); }
+.monaco-diff-editor.vs-dark		.diffOverview { background: rgba(255, 255, 255, 0.01); }
+
+.monaco-diff-editor .diffViewport {
+	box-shadow: inset 0px 0px 1px 0px #B9B9B9;
+	background: rgba(0, 0, 0, 0.10);
+}
+
+.monaco-diff-editor.vs-dark .diffViewport,
+.monaco-diff-editor.hc-black .diffViewport {
+	background: rgba(255, 255, 255, 0.10);
+}
+.monaco-scrollable-element.modified-in-monaco-diff-editor.vs		.scrollbar { background: rgba(0,0,0,0); }
+.monaco-scrollable-element.modified-in-monaco-diff-editor.vs-dark	.scrollbar { background: rgba(0,0,0,0); }
+.monaco-scrollable-element.modified-in-monaco-diff-editor.hc-black	.scrollbar { background: none; }
+
+.monaco-scrollable-element.modified-in-monaco-diff-editor .slider {
+	z-index: 10;
+}
+.modified-in-monaco-diff-editor				.slider.active { background: rgba(171, 171, 171, .4); }
+.modified-in-monaco-diff-editor.hc-black	.slider.active { background: none; }
+
+/* ---------- Diff ---------- */
+
+.monaco-editor .insert-sign,
+.monaco-diff-editor .insert-sign,
+.monaco-editor .delete-sign,
+.monaco-diff-editor .delete-sign {
+	background-size: 60%;
+	opacity: 0.7;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	background-position: center;
+	background-size: 11px 11px;
+}
+.monaco-editor.hc-black .insert-sign,
+.monaco-diff-editor.hc-black .insert-sign,
+.monaco-editor.hc-black .delete-sign,
+.monaco-diff-editor.hc-black .delete-sign {
+	opacity: 1;
+}
+.monaco-editor .insert-sign,
+.monaco-diff-editor .insert-sign {
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkxheWVyIDE8L3RpdGxlPjxyZWN0IGhlaWdodD0iMTEiIHdpZHRoPSIzIiB5PSIzIiB4PSI3IiBmaWxsPSIjNDI0MjQyIi8+PHJlY3QgaGVpZ2h0PSIzIiB3aWR0aD0iMTEiIHk9IjciIHg9IjMiIGZpbGw9IiM0MjQyNDIiLz48L3N2Zz4=");
+}
+.monaco-editor .delete-sign,
+.monaco-diff-editor .delete-sign {
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkxheWVyIDE8L3RpdGxlPjxyZWN0IGhlaWdodD0iMyIgd2lkdGg9IjExIiB5PSI3IiB4PSIzIiBmaWxsPSIjNDI0MjQyIi8+PC9zdmc+");
+}
+
+.monaco-editor.vs-dark .insert-sign,
+.monaco-diff-editor.vs-dark .insert-sign,
+.monaco-editor.hc-black .insert-sign,
+.monaco-diff-editor.hc-black .insert-sign {
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkxheWVyIDE8L3RpdGxlPjxyZWN0IGhlaWdodD0iMTEiIHdpZHRoPSIzIiB5PSIzIiB4PSI3IiBmaWxsPSIjQzVDNUM1Ii8+PHJlY3QgaGVpZ2h0PSIzIiB3aWR0aD0iMTEiIHk9IjciIHg9IjMiIGZpbGw9IiNDNUM1QzUiLz48L3N2Zz4=");
+}
+.monaco-editor.vs-dark .delete-sign,
+.monaco-diff-editor.vs-dark .delete-sign,
+.monaco-editor.hc-black .delete-sign,
+.monaco-diff-editor.hc-black .delete-sign {
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHRpdGxlPkxheWVyIDE8L3RpdGxlPjxyZWN0IGhlaWdodD0iMyIgd2lkdGg9IjExIiB5PSI3IiB4PSIzIiBmaWxsPSIjQzVDNUM1Ii8+PC9zdmc+");
+}
+
+.monaco-editor .inline-deleted-margin-view-zone {
+	text-align: right;
+}
+.monaco-editor .inline-added-margin-view-zone {
+	text-align: right;
+}
+
+.monaco-editor .diagonal-fill {
+	background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAadEVYdFNvZnR3YXJlAFBhaW50Lk5FVCB2My41LjEwMPRyoQAAAChJREFUKFNjOH/+fAMDDgCSu3Dhwn9c8gwwBTgNGR4KQP4HhQOhsAIAZCBTkhtqePcAAAAASUVORK5CYII=");
+}
+.monaco-editor.vs-dark .diagonal-fill {
+	opacity: 0.2;
+}
+.monaco-editor.hc-black .diagonal-fill {
+	background: none;
+}
+
+/* ---------- Inline Diff ---------- */
+
+.monaco-editor .view-zones .view-lines .view-line span {
+	display: inline-block;
+}
+
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-sash {
+	position: absolute;
+	z-index: 35;
+	touch-action: none;
+}
+
+.monaco-sash.disabled {
+	pointer-events: none;
+}
+
+.monaco-sash.vertical {
+	cursor: ew-resize;
+	top: 0;
+	width: 4px;
+	height: 100%;
+}
+
+.monaco-sash.mac.vertical {
+	cursor: col-resize;
+}
+
+.monaco-sash.vertical.minimum {
+	cursor: e-resize;
+}
+
+.monaco-sash.vertical.maximum {
+	cursor: w-resize;
+}
+
+.monaco-sash.horizontal {
+	cursor: ns-resize;
+	left: 0;
+	width: 100%;
+	height: 4px;
+}
+
+.monaco-sash.mac.horizontal {
+	cursor: row-resize;
+}
+
+.monaco-sash.horizontal.minimum {
+	cursor: s-resize;
+}
+
+.monaco-sash.horizontal.maximum {
+	cursor: n-resize;
+}
+
+.monaco-sash:not(.disabled).orthogonal-start::before,
+.monaco-sash:not(.disabled).orthogonal-end::after {
+	content: ' ';
+	height: 8px;
+	width: 8px;
+	z-index: 100;
+	display: block;
+	cursor: all-scroll;
+	position: absolute;
+}
+
+.monaco-sash.orthogonal-start.vertical::before {
+	left: -2px;
+	top: -4px;
+}
+
+.monaco-sash.orthogonal-end.vertical::after {
+	left: -2px;
+	bottom: -4px;
+}
+
+.monaco-sash.orthogonal-start.horizontal::before {
+	top: -2px;
+	left: -4px;
+}
+
+.monaco-sash.orthogonal-end.horizontal::after {
+	top: -2px;
+	right: -4px;
+}
+
+.monaco-sash.disabled {
+	cursor: default !important;
+	pointer-events: none !important;
+}
+
+/** Touch **/
+
+.monaco-sash.touch.vertical {
+	width: 20px;
+}
+
+.monaco-sash.touch.horizontal {
+	height: 20px;
+}
+
+/** Debug **/
+
+.monaco-sash.debug {
+	background: cyan;
+}
+
+.monaco-sash.debug.disabled {
+	background: rgba(0, 255, 255, 0.2);
+}
+
+.monaco-sash.debug:not(.disabled).orthogonal-start::before,
+.monaco-sash.debug:not(.disabled).orthogonal-end::after {
+	background: red;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-diff-editor .diff-review-line-number {
+	text-align: right;
+	display: inline-block;
+}
+
+.monaco-diff-editor .diff-review {
+	position: absolute;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+.monaco-diff-editor .diff-review-summary {
+	padding-left: 10px;
+}
+
+.monaco-diff-editor .diff-review-shadow {
+	position: absolute;
+}
+
+.monaco-diff-editor .diff-review-row {
+	white-space: pre;
+}
+
+.monaco-diff-editor .diff-review-table {
+	display: table;
+	min-width: 100%;
+}
+
+.monaco-diff-editor .diff-review-row {
+	display: table-row;
+	width: 100%;
+}
+
+.monaco-diff-editor .diff-review-cell {
+	display: table-cell;
+}
+
+.monaco-diff-editor .diff-review-spacer {
+	display: inline-block;
+	width: 10px;
+}
+
+.monaco-diff-editor .diff-review-actions {
+	display: inline-block;
+	position: absolute;
+	right: 10px;
+	top: 2px;
+}
+
+.monaco-diff-editor .diff-review-actions .action-label {
+	width: 16px;
+	height: 16px;
+	margin: 2px 0;
+}
+.monaco-diff-editor .action-label.icon.close-diff-review {
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMyAzIDE2IDE2IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDMgMyAxNiAxNiI+PHBvbHlnb24gZmlsbD0iIzQyNDI0MiIgcG9pbnRzPSIxMi41OTcsMTEuMDQyIDE1LjQsMTMuODQ1IDEzLjg0NCwxNS40IDExLjA0MiwxMi41OTggOC4yMzksMTUuNCA2LjY4MywxMy44NDUgOS40ODUsMTEuMDQyIDYuNjgzLDguMjM5IDguMjM4LDYuNjgzIDExLjA0Miw5LjQ4NiAxMy44NDUsNi42ODMgMTUuNCw4LjIzOSIvPjwvc3ZnPg==") center center no-repeat;
+}
+.monaco-diff-editor.hc-black .action-label.icon.close-diff-review,
+.monaco-diff-editor.vs-dark .action-label.icon.close-diff-review {
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMyAzIDE2IDE2IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDMgMyAxNiAxNiI+PHBvbHlnb24gZmlsbD0iI2U4ZThlOCIgcG9pbnRzPSIxMi41OTcsMTEuMDQyIDE1LjQsMTMuODQ1IDEzLjg0NCwxNS40IDExLjA0MiwxMi41OTggOC4yMzksMTUuNCA2LjY4MywxMy44NDUgOS40ODUsMTEuMDQyIDYuNjgzLDguMjM5IDguMjM4LDYuNjgzIDExLjA0Miw5LjQ4NiAxMy44NDUsNi42ODMgMTUuNCw4LjIzOSIvPjwvc3ZnPg==") center center no-repeat;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-action-bar {
+	text-align: right;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+.monaco-action-bar .actions-container {
+	display: flex;
+	margin: 0 auto;
+	padding: 0;
+	width: 100%;
+	justify-content: flex-end;
+}
+
+.monaco-action-bar.vertical .actions-container {
+	display: inline-block;
+}
+
+.monaco-action-bar.reverse .actions-container {
+	flex-direction: row-reverse;
+}
+
+.monaco-action-bar .action-item {
+	cursor: pointer;
+	display: inline-block;
+	transition: transform 50ms ease;
+	position: relative;  /* DO NOT REMOVE - this is the key to preventing the ghosting icon bug in Chrome 42 */
+}
+
+.monaco-action-bar .action-item.disabled {
+	cursor: default;
+}
+
+.monaco-action-bar.animated .action-item.active {
+	transform: scale(1.272019649, 1.272019649); /* 1.272019649 = √φ */
+}
+
+.monaco-action-bar .action-item .icon {
+	display: inline-block;
+}
+
+.monaco-action-bar .action-label {
+	font-size: 11px;
+	margin-right: 4px;
+}
+
+.monaco-action-bar .action-label.octicon {
+	font-size: 15px;
+	line-height: 35px;
+	text-align: center;
+}
+
+.monaco-action-bar .action-item.disabled .action-label,
+.monaco-action-bar .action-item.disabled .action-label:hover {
+	opacity: 0.4;
+}
+
+/* Vertical actions */
+
+.monaco-action-bar.vertical {
+	text-align: left;
+}
+
+.monaco-action-bar.vertical .action-item {
+	display: block;
+}
+
+.monaco-action-bar.vertical .action-label.separator {
+	display: block;
+	border-bottom: 1px solid #bbb;
+	padding-top: 1px;
+	margin-left: .8em;
+	margin-right: .8em;
+}
+
+.monaco-action-bar.animated.vertical .action-item.active {
+	transform: translate(5px, 0);
+}
+
+.secondary-actions .monaco-action-bar .action-label {
+	margin-left: 6px;
+}
+
+/* Action Items */
+.monaco-action-bar .action-item.select-container {
+	overflow: hidden; /* somehow the dropdown overflows its container, we prevent it here to not push */
+	flex: 1;
+	max-width: 170px;
+	min-width: 60px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.context-view .monaco-menu {
+	min-width: 130px;
+}
+
+.context-view-block {
+	position: fixed;
+	left:0;
+	top:0;
+	z-index: -1;
+	width: 100%;
+	height: 100%;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-menu .monaco-action-bar.vertical {
+	margin-left: 0;
+	overflow: visible;
+}
+
+.monaco-menu .monaco-action-bar.vertical .actions-container {
+	display: block;
+}
+
+.monaco-menu .monaco-action-bar.vertical .action-item {
+	padding: 0;
+	transform: none;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+.monaco-menu .monaco-action-bar.vertical .action-item.active {
+	transform: none;
+}
+
+.monaco-menu .monaco-action-bar.vertical .action-menu-item {
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	display: -ms-flexbox;
+	display: flex;
+	height: 2em;
+	align-items: center;
+	position: relative;
+}
+
+.monaco-menu .monaco-action-bar.vertical .action-label {
+	-ms-flex: 1 1 auto;
+	flex: 1 1 auto;
+	text-decoration: none;
+	padding: 0 1em;
+	background: none;
+	font-size: 12px;
+	line-height: 1;
+}
+
+.monaco-menu .monaco-action-bar.vertical .keybinding,
+.monaco-menu .monaco-action-bar.vertical .submenu-indicator {
+	display: inline-block;
+	-ms-flex: 2 1 auto;
+	flex: 2 1 auto;
+	padding: 0 1em;
+	text-align: right;
+	font-size: 12px;
+	line-height: 1;
+}
+
+.monaco-menu .monaco-action-bar.vertical .submenu-indicator {
+	height: 100%;
+	-webkit-mask: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQuNTIwNTEgMTIuMzY0M0w5Ljg3NzkzIDdMNC41MjA1MSAxLjYzNTc0Mkw1LjEzNTc0IDEuMDIwNTA3OEwxMS4xMjIxIDdMNS4xMzU3NCAxMi45Nzk1TDQuNTIwNTEgMTIuMzY0M1oiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo=") no-repeat 90% 50%/13px 13px;
+	mask: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQiIGhlaWdodD0iMTQiIHZpZXdCb3g9IjAgMCAxNCAxNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTQuNTIwNTEgMTIuMzY0M0w5Ljg3NzkzIDdMNC41MjA1MSAxLjYzNTc0Mkw1LjEzNTc0IDEuMDIwNTA3OEwxMS4xMjIxIDdMNS4xMzU3NCAxMi45Nzk1TDQuNTIwNTEgMTIuMzY0M1oiIGZpbGw9ImJsYWNrIi8+Cjwvc3ZnPgo=") no-repeat 90% 50%/13px 13px;
+}
+
+.monaco-menu .monaco-action-bar.vertical .action-item.disabled .keybinding,
+.monaco-menu .monaco-action-bar.vertical .action-item.disabled .submenu-indicator {
+	opacity: 0.4;
+}
+
+.monaco-menu .monaco-action-bar.vertical .action-label:not(.separator) {
+	display: inline-block;
+	-webkit-box-sizing:	border-box;
+	-o-box-sizing:		border-box;
+	-moz-box-sizing:	border-box;
+	-ms-box-sizing:		border-box;
+	box-sizing:			border-box;
+	margin: 0;
+}
+
+.monaco-menu .monaco-action-bar.vertical .action-item {
+	position: static;
+	overflow: visible;
+}
+
+
+.monaco-menu .monaco-action-bar.vertical .action-item .monaco-submenu {
+	position: absolute;
+}
+
+.monaco-menu .monaco-action-bar.vertical .action-label.separator {
+	padding: 0.5em 0 0 0;
+	margin-bottom: 0.5em;
+	width: 100%;
+}
+
+.monaco-menu .monaco-action-bar.vertical .action-label.separator.text {
+	padding: 0.7em 1em 0.1em 1em;
+	font-weight: bold;
+	opacity: 1;
+}
+
+.monaco-menu .monaco-action-bar.vertical .action-label:hover {
+	color: inherit;
+}
+
+.monaco-menu .monaco-action-bar.vertical .menu-item-check {
+	position: absolute;
+	visibility: hidden;
+	-webkit-mask: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iLTIgLTIgMTYgMTYiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgLTIgLTIgMTYgMTYiPjxwb2x5Z29uIGZpbGw9IiM0MjQyNDIiIHBvaW50cz0iOSwwIDQuNSw5IDMsNiAwLDYgMywxMiA2LDEyIDEyLDAiLz48L3N2Zz4=") no-repeat 50% 56%/15px 15px;
+	mask: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iLTIgLTIgMTYgMTYiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgLTIgLTIgMTYgMTYiPjxwb2x5Z29uIGZpbGw9IiM0MjQyNDIiIHBvaW50cz0iOSwwIDQuNSw5IDMsNiAwLDYgMywxMiA2LDEyIDEyLDAiLz48L3N2Zz4=") no-repeat 50% 56%/15px 15px;
+	width: 1em;
+	height: 100%;
+}
+
+.monaco-menu .monaco-action-bar.vertical .action-menu-item.checked .menu-item-check {
+	visibility: visible;
+}
+
+/* Context Menu */
+
+.context-view.monaco-menu-container {
+	outline: 0;
+	border: none;
+	-webkit-animation: fadeIn 0.083s linear;
+	-o-animation: fadeIn 0.083s linear;
+	-moz-animation: fadeIn 0.083s linear;
+	-ms-animation: fadeIn 0.083s linear;
+	animation: fadeIn 0.083s linear;
+}
+
+.context-view.monaco-menu-container :focus,
+.context-view.monaco-menu-container .monaco-action-bar.vertical:focus,
+.context-view.monaco-menu-container .monaco-action-bar.vertical :focus {
+	outline: 0;
+}
+
+.monaco-menu .monaco-action-bar.vertical .action-item {
+	border: 1px solid transparent; /* prevents jumping behaviour on hover or focus */
+}
+
+
+/* High Contrast Theming */
+.hc-black .context-view.monaco-menu-container {
+	box-shadow: none;
+}
+
+.hc-black .monaco-menu .monaco-action-bar.vertical .action-item.focused {
+	background: none;
+}
+
+/* Menubar styles */
+
+.menubar {
+	display: flex;
+	flex-shrink: 1;
+	box-sizing: border-box;
+	height: 30px;
+	overflow: hidden;
+	flex-wrap: wrap;
+}
+
+.fullscreen .menubar {
+	margin: 0px;
+	padding: 0px 5px;
+}
+
+.menubar > .menubar-menu-button {
+	align-items: center;
+	box-sizing: border-box;
+	padding: 0px 8px;
+	cursor: default;
+	-webkit-app-region: no-drag;
+	zoom: 1;
+	white-space: nowrap;
+	outline: 0;
+}
+
+.menubar .menubar-menu-items-holder {
+	position: absolute;
+	left: 0px;
+	opacity: 1;
+	z-index: 2000;
+}
+
+.menubar .menubar-menu-items-holder.monaco-menu-container {
+	outline: 0;
+	border: none;
+}
+
+.menubar .menubar-menu-items-holder.monaco-menu-container :focus {
+	outline: 0;
+}
+
+.menubar .toolbar-toggle-more {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 14px;
+	width: 20px;
+	height: 100%;
+}
+
+.menubar .toolbar-toggle-more {
+	display: inline-block;
+	padding: 0;
+	-webkit-mask: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PGRlZnM+PHN0eWxlPi5pY29uLWNhbnZhcy10cmFuc3BhcmVudCwuaWNvbi12cy1vdXR7ZmlsbDojZjZmNmY2O30uaWNvbi1jYW52YXMtdHJhbnNwYXJlbnR7b3BhY2l0eTowO30uaWNvbi12cy1iZ3tmaWxsOiM0MjQyNDI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5FbGxpcHNpc19ib2xkXzE2eDwvdGl0bGU+PGcgaWQ9ImNhbnZhcyI+PHBhdGggY2xhc3M9Imljb24tY2FudmFzLXRyYW5zcGFyZW50IiBkPSJNMTYsMFYxNkgwVjBaIi8+PC9nPjxnIGlkPSJvdXRsaW5lIiBzdHlsZT0iZGlzcGxheTogbm9uZTsiPjxwYXRoIGNsYXNzPSJpY29uLXZzLW91dCIgZD0iTTYsNy41QTIuNSwyLjUsMCwxLDEsMy41LDUsMi41LDIuNSwwLDAsMSw2LDcuNVpNOC41LDVBMi41LDIuNSwwLDEsMCwxMSw3LjUsMi41LDIuNSwwLDAsMCw4LjUsNVptNSwwQTIuNSwyLjUsMCwxLDAsMTYsNy41LDIuNSwyLjUsMCwwLDAsMTMuNSw1WiIgc3R5bGU9ImRpc3BsYXk6IG5vbmU7Ii8+PC9nPjxnIGlkPSJpY29uQmciPjxwYXRoIGNsYXNzPSJpY29uLXZzLWJnIiBkPSJNNSw3LjVBMS41LDEuNSwwLDEsMSwzLjUsNiwxLjUsMS41LDAsMCwxLDUsNy41Wk04LjUsNkExLjUsMS41LDAsMSwwLDEwLDcuNSwxLjUsMS41LDAsMCwwLDguNSw2Wm01LDBBMS41LDEuNSwwLDEsMCwxNSw3LjUsMS41LDEuNSwwLDAsMCwxMy41LDZaIi8+PC9nPjwvc3ZnPg==") no-repeat 50% 55%/14px 14px;
+	mask: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PGRlZnM+PHN0eWxlPi5pY29uLWNhbnZhcy10cmFuc3BhcmVudCwuaWNvbi12cy1vdXR7ZmlsbDojZjZmNmY2O30uaWNvbi1jYW52YXMtdHJhbnNwYXJlbnR7b3BhY2l0eTowO30uaWNvbi12cy1iZ3tmaWxsOiM0MjQyNDI7fTwvc3R5bGU+PC9kZWZzPjx0aXRsZT5FbGxpcHNpc19ib2xkXzE2eDwvdGl0bGU+PGcgaWQ9ImNhbnZhcyI+PHBhdGggY2xhc3M9Imljb24tY2FudmFzLXRyYW5zcGFyZW50IiBkPSJNMTYsMFYxNkgwVjBaIi8+PC9nPjxnIGlkPSJvdXRsaW5lIiBzdHlsZT0iZGlzcGxheTogbm9uZTsiPjxwYXRoIGNsYXNzPSJpY29uLXZzLW91dCIgZD0iTTYsNy41QTIuNSwyLjUsMCwxLDEsMy41LDUsMi41LDIuNSwwLDAsMSw2LDcuNVpNOC41LDVBMi41LDIuNSwwLDEsMCwxMSw3LjUsMi41LDIuNSwwLDAsMCw4LjUsNVptNSwwQTIuNSwyLjUsMCwxLDAsMTYsNy41LDIuNSwyLjUsMCwwLDAsMTMuNSw1WiIgc3R5bGU9ImRpc3BsYXk6IG5vbmU7Ii8+PC9nPjxnIGlkPSJpY29uQmciPjxwYXRoIGNsYXNzPSJpY29uLXZzLWJnIiBkPSJNNSw3LjVBMS41LDEuNSwwLDEsMSwzLjUsNiwxLjUsMS41LDAsMCwxLDUsNy41Wk04LjUsNkExLjUsMS41LDAsMSwwLDEwLDcuNSwxLjUsMS41LDAsMCwwLDguNSw2Wm01LDBBMS41LDEuNSwwLDEsMCwxNSw3LjUsMS41LDEuNSwwLDAsMCwxMy41LDZaIi8+PC9nPjwvc3ZnPg==") no-repeat 50% 55%/14px 14px;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.context-view {
+	position: absolute;
+	z-index: 2000;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-list {
+	position: relative;
+	height: 100%;
+	width: 100%;
+	white-space: nowrap;
+}
+
+.monaco-list.mouse-support {
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: -moz-none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+.monaco-list > .monaco-scrollable-element {
+	height: 100%;
+}
+
+.monaco-list-rows {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.monaco-list.horizontal-scrolling .monaco-list-rows {
+	width: auto;
+	min-width: 100%;
+}
+
+.monaco-list-row {
+	position: absolute;
+	-moz-box-sizing:	border-box;
+	-o-box-sizing:		border-box;
+	-ms-box-sizing:		border-box;
+	box-sizing:			border-box;
+	overflow: hidden;
+	width: 100%;
+}
+
+.monaco-list.mouse-support .monaco-list-row {
+	cursor: pointer;
+	touch-action: none;
+}
+
+/* for OS X ballistic scrolling */
+.monaco-list-row.scrolling {
+	display: none !important;
+}
+
+/* Focus */
+.monaco-list.element-focused, .monaco-list.selection-single, .monaco-list.selection-multiple {
+	outline: 0 !important;
+}
+
+/* Dnd */
+.monaco-drag-image {
+	display: inline-block;
+	padding: 1px 7px;
+	border-radius: 10px;
+	font-size: 12px;
+	position: absolute;
+}
+
+/* Type filter */
+
+.monaco-list-type-filter {
+	display: flex;
+	align-items: center;
+	position: absolute;
+	border-radius: 2px;
+	padding: 0px 3px;
+	max-width: calc(100% - 10px);
+	text-overflow: ellipsis;
+	overflow: hidden;
+	text-align: right;
+	box-sizing: border-box;
+	cursor: all-scroll;
+	font-size: 13px;
+	line-height: 18px;
+	height: 20px;
+	z-index: 1;
+	top: 4px;
+}
+
+.monaco-list-type-filter.dragging {
+	transition: top 0.2s, left 0.2s;
+}
+
+.monaco-list-type-filter.ne {
+	right: 4px;
+}
+
+.monaco-list-type-filter.nw {
+	left: 4px;
+}
+
+.monaco-list-type-filter > .controls {
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	transition: width 0.2s;
+	width: 0;
+}
+
+.monaco-list-type-filter.dragging > .controls,
+.monaco-list-type-filter:hover > .controls {
+	width: 36px;
+}
+
+.monaco-list-type-filter > .controls > * {
+	box-sizing: border-box;
+	width: 16px;
+	height: 16px;
+	margin: 0 0 0 2px;
+	flex-shrink: 0;
+}
+
+.monaco-list-type-filter > .controls > .filter {
+	-webkit-appearance: none;
+	width: 16px;
+	height: 16px;
+	background: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTYgOS45OTk1MUgyVjExLjk5OTVINlY5Ljk5OTUxWiIgZmlsbD0iIzRCNEI0QiIvPgo8cGF0aCBkPSJNMTAgN0gyVjlIMTBWN1oiIGZpbGw9IiM0QjRCNEIiLz4KPHBhdGggZD0iTTE0IDRIMlY2SDE0VjRaIiBmaWxsPSIjNEI0QjRCIi8+Cjwvc3ZnPgo=");
+	background-position: 50% 50%;
+	cursor: pointer;
+}
+
+.monaco-list-type-filter > .controls > .filter:checked {
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwLjAwMDIgMTBINi4wMDAyNFYxMkgxMC4wMDAyVjEwWiIgZmlsbD0iIzQyNDI0MiIvPgo8cGF0aCBkPSJNMTEuOTk5OCA3SDMuOTk5NzZWOUgxMS45OTk4VjdaIiBmaWxsPSIjNDI0MjQyIi8+CjxwYXRoIGQ9Ik0xNCA0SDJWNkgxNFY0WiIgZmlsbD0iIzQyNDI0MiIvPgo8L3N2Zz4K");
+}
+
+.vs-dark .monaco-list-type-filter > .controls > .filter {
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTYgOS45OTk1MUgyVjExLjk5OTVINlY5Ljk5OTUxWiIgZmlsbD0iI0U4RThFOCIvPgo8cGF0aCBkPSJNMTAgN0gyVjlIMTBWN1oiIGZpbGw9IiNFOEU4RTgiLz4KPHBhdGggZD0iTTE0IDRIMlY2SDE0VjRaIiBmaWxsPSIjRThFOEU4Ii8+Cjwvc3ZnPgo=");
+}
+
+.vs-dark .monaco-list-type-filter > .controls > .filter:checked {
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwLjAwMDIgMTBINi4wMDAyNFYxMkgxMC4wMDAyVjEwWiIgZmlsbD0iI0U4RThFOCIvPgo8cGF0aCBkPSJNMTEuOTk5OCA3SDMuOTk5NzZWOUgxMS45OTk4VjdaIiBmaWxsPSIjRThFOEU4Ii8+CjxwYXRoIGQ9Ik0xNCA0SDJWNkgxNFY0WiIgZmlsbD0iI0U4RThFOCIvPgo8L3N2Zz4K");
+}
+
+.hc-black .monaco-list-type-filter > .controls > .filter {
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTYgOS45OTk1MUgyVjExLjk5OTVINlY5Ljk5OTUxWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTEwIDdIMlY5SDEwVjdaIiBmaWxsPSJ3aGl0ZSIvPgo8cGF0aCBkPSJNMTQgNEgyVjZIMTRWNFoiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=");
+}
+
+.hc-black .monaco-list-type-filter > .controls > .filter:checked {
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTYiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwLjAwMDIgMTBINi4wMDAyNFYxMkgxMC4wMDAyVjEwWiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTExLjk5OTggN0gzLjk5OTc2VjlIMTEuOTk5OFY3WiIgZmlsbD0id2hpdGUiLz4KPHBhdGggZD0iTTE0IDRIMlY2SDE0VjRaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K");
+}
+
+.monaco-list-type-filter > .controls > .clear {
+	border: none;
+	background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMyAzIDE2IDE2IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDMgMyAxNiAxNiI+PHBvbHlnb24gZmlsbD0iIzQyNDI0MiIgcG9pbnRzPSIxMi41OTcsMTEuMDQyIDE1LjQsMTMuODQ1IDEzLjg0NCwxNS40IDExLjA0MiwxMi41OTggOC4yMzksMTUuNCA2LjY4MywxMy44NDUgOS40ODUsMTEuMDQyIDYuNjgzLDguMjM5IDguMjM4LDYuNjgzIDExLjA0Miw5LjQ4NiAxMy44NDUsNi42ODMgMTUuNCw4LjIzOSIvPjwvc3ZnPg==");
+	cursor: pointer;
+}
+
+.vs-dark .monaco-list-type-filter > .controls > .clear {
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiIgdmlld0JveD0iMyAzIDE2IDE2IiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDMgMyAxNiAxNiI+PHBvbHlnb24gZmlsbD0iI2U4ZThlOCIgcG9pbnRzPSIxMi41OTcsMTEuMDQyIDE1LjQsMTMuODQ1IDEzLjg0NCwxNS40IDExLjA0MiwxMi41OTggOC4yMzksMTUuNCA2LjY4MywxMy44NDUgOS40ODUsMTEuMDQyIDYuNjgzLDguMjM5IDguMjM4LDYuNjgzIDExLjA0Miw5LjQ4NiAxMy44NDUsNi42ODMgMTUuNCw4LjIzOSIvPjwvc3ZnPg==");
+}
+
+.hc-black .monaco-list-type-filter > .controls > .clear {
+	background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgeG1sbnM6ZGM9Imh0dHA6Ly9wdXJsLm9yZy9kYy9lbGVtZW50cy8xLjEvIgogICB4bWxuczpjYz0iaHR0cDovL2NyZWF0aXZlY29tbW9ucy5vcmcvbnMjIgogICB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIKICAgaWQ9InN2ZzczMjAiCiAgIHZlcnNpb249IjEuMSIKICAgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAzIDMgMTYgMTYiCiAgIHZpZXdCb3g9IjMgMyAxNiAxNiIKICAgaGVpZ2h0PSIxNiIKICAgd2lkdGg9IjE2Ij4KICA8bWV0YWRhdGEKICAgICBpZD0ibWV0YWRhdGE3MzI2Ij4KICAgIDxyZGY6UkRGPgogICAgICA8Y2M6V29yawogICAgICAgICByZGY6YWJvdXQ9IiI+CiAgICAgICAgPGRjOmZvcm1hdD5pbWFnZS9zdmcreG1sPC9kYzpmb3JtYXQ+CiAgICAgICAgPGRjOnR5cGUKICAgICAgICAgICByZGY6cmVzb3VyY2U9Imh0dHA6Ly9wdXJsLm9yZy9kYy9kY21pdHlwZS9TdGlsbEltYWdlIiAvPgogICAgICAgIDxkYzp0aXRsZT48L2RjOnRpdGxlPgogICAgICA8L2NjOldvcms+CiAgICA8L3JkZjpSREY+CiAgPC9tZXRhZGF0YT4KICA8ZGVmcwogICAgIGlkPSJkZWZzNzMyNCIgLz4KICA8cG9seWdvbgogICAgIHN0eWxlPSJmaWxsOiNmZmZmZmY7ZmlsbC1vcGFjaXR5OjEiCiAgICAgaWQ9InBvbHlnb243MzE4IgogICAgIHBvaW50cz0iMTIuNTk3LDExLjA0MiAxNS40LDEzLjg0NSAxMy44NDQsMTUuNCAxMS4wNDIsMTIuNTk4IDguMjM5LDE1LjQgNi42ODMsMTMuODQ1IDkuNDg1LDExLjA0MiA2LjY4Myw4LjIzOSA4LjIzOCw2LjY4MyAxMS4wNDIsOS40ODYgMTMuODQ1LDYuNjgzIDE1LjQsOC4yMzkiCiAgICAgZmlsbD0iIzQyNDI0MiIgLz4KPC9zdmc+Cg==");
+}
+
+.monaco-list-type-filter-message {
+	position: absolute;
+	box-sizing: border-box;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	padding: 40px 1em 1em 1em;
+	text-align: center;
+	white-space: normal;
+	opacity: 0.7;
+	pointer-events: none;
+}
+
+.monaco-list-type-filter-message:empty {
+	display: none;
+}
+
+/* Electron */
+
+.monaco-list-type-filter {
+	cursor: -webkit-grab;
+}
+
+.monaco-list-type-filter.dragging {
+	cursor: -webkit-grabbing;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-tl-row {
+	display: flex;
+	height: 100%;
+	align-items: center;
+}
+
+.monaco-tl-twistie,
+.monaco-tl-contents {
+	height: 100%;
+}
+
+.monaco-tl-twistie {
+	font-size: 10px;
+	text-align: right;
+	margin-right: 6px;
+	flex-shrink: 0;
+	width: 16px;
+}
+
+.monaco-tl-contents {
+	flex: 1;
+	overflow: hidden;
+}
+
+.monaco-tl-twistie.collapsible {
+	background-size: 16px;
+	background-position: 3px 50%;
+	background-repeat: no-repeat;
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iIzY0NjQ2NSIgZD0iTTExIDEwSDUuMzQ0TDExIDQuNDE0VjEweiIvPjwvc3ZnPg==");
+}
+
+.monaco-tl-twistie.collapsible.collapsed:not(.loading) {
+	display: inline-block;
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iIzY0NjQ2NSIgZD0iTTYgNHY4bDQtNC00LTR6bTEgMi40MTRMOC41ODYgOCA3IDkuNTg2VjYuNDE0eiIvPjwvc3ZnPg==");
+}
+
+.vs-dark .monaco-tl-twistie.collapsible:not(.loading) {
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iI0U4RThFOCIgZD0iTTExIDEwSDUuMzQ0TDExIDQuNDE0VjEweiIvPjwvc3ZnPg==");
+}
+
+.vs-dark .monaco-tl-twistie.collapsible.collapsed:not(.loading) {
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iI0U4RThFOCIgZD0iTTYgNHY4bDQtNC00LTR6bTEgMi40MTRMOC41ODYgOCA3IDkuNTg2VjYuNDE0eiIvPjwvc3ZnPg==");
+}
+
+.hc-black .monaco-tl-twistie.collapsible:not(.loading) {
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTExIDEwLjA3aC01LjY1Nmw1LjY1Ni01LjY1NnY1LjY1NnoiLz48L3N2Zz4=");
+}
+
+.hc-black .monaco-tl-twistie.collapsible.collapsed:not(.loading) {
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNiIgaGVpZ2h0PSIxNiI+PHBhdGggZmlsbD0iI2ZmZiIgZD0iTTYgNHY4bDQtNC00LTR6bTEgMi40MTRsMS41ODYgMS41ODYtMS41ODYgMS41ODZ2LTMuMTcyeiIvPjwvc3ZnPg==");
+}
+
+.monaco-tl-twistie.loading {
+	background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0nMS4wJyBzdGFuZGFsb25lPSdubycgPz4KPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZlcnNpb249JzEuMScgd2lkdGg9JzEwcHgnIGhlaWdodD0nMTBweCc+Cgk8c3R5bGU+CiAgICBjaXJjbGUgewogICAgICBhbmltYXRpb246IGJhbGwgMC42cyBsaW5lYXIgaW5maW5pdGU7CiAgICB9CgogICAgY2lyY2xlOm50aC1jaGlsZCgyKSB7IGFuaW1hdGlvbi1kZWxheTogMC4wNzVzOyB9CiAgICBjaXJjbGU6bnRoLWNoaWxkKDMpIHsgYW5pbWF0aW9uLWRlbGF5OiAwLjE1czsgfQogICAgY2lyY2xlOm50aC1jaGlsZCg0KSB7IGFuaW1hdGlvbi1kZWxheTogMC4yMjVzOyB9CiAgICBjaXJjbGU6bnRoLWNoaWxkKDUpIHsgYW5pbWF0aW9uLWRlbGF5OiAwLjNzOyB9CiAgICBjaXJjbGU6bnRoLWNoaWxkKDYpIHsgYW5pbWF0aW9uLWRlbGF5OiAwLjM3NXM7IH0KICAgIGNpcmNsZTpudGgtY2hpbGQoNykgeyBhbmltYXRpb24tZGVsYXk6IDAuNDVzOyB9CiAgICBjaXJjbGU6bnRoLWNoaWxkKDgpIHsgYW5pbWF0aW9uLWRlbGF5OiAwLjUyNXM7IH0KCiAgICBAa2V5ZnJhbWVzIGJhbGwgewogICAgICBmcm9tIHsgb3BhY2l0eTogMTsgfQogICAgICB0byB7IG9wYWNpdHk6IDAuMzsgfQogICAgfQoJPC9zdHlsZT4KCTxnPgoJCTxjaXJjbGUgY3g9JzUnIGN5PScxJyByPScxJyBzdHlsZT0nb3BhY2l0eTowLjM7JyAvPgoJCTxjaXJjbGUgY3g9JzcuODI4NCcgY3k9JzIuMTcxNicgcj0nMScgc3R5bGU9J29wYWNpdHk6MC4zOycgLz4KCQk8Y2lyY2xlIGN4PSc5JyBjeT0nNScgcj0nMScgc3R5bGU9J29wYWNpdHk6MC4zOycgLz4KCQk8Y2lyY2xlIGN4PSc3LjgyODQnIGN5PSc3LjgyODQnIHI9JzEnIHN0eWxlPSdvcGFjaXR5OjAuMzsnIC8+CgkJPGNpcmNsZSBjeD0nNScgY3k9JzknIHI9JzEnIHN0eWxlPSdvcGFjaXR5OjAuMzsnIC8+CgkJPGNpcmNsZSBjeD0nMi4xNzE2JyBjeT0nNy44Mjg0JyByPScxJyBzdHlsZT0nb3BhY2l0eTowLjM7JyAvPgoJCTxjaXJjbGUgY3g9JzEnIGN5PSc1JyByPScxJyBzdHlsZT0nb3BhY2l0eTowLjM7JyAvPgoJCTxjaXJjbGUgY3g9JzIuMTcxNicgY3k9JzIuMTcxNicgcj0nMScgc3R5bGU9J29wYWNpdHk6MC4zOycgLz4KCTwvZz4KPC9zdmc+Cg==");
+	background-position: 0 center;
+}
+
+.vs-dark .monaco-tl-twistie.loading {
+	background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0nMS4wJyBzdGFuZGFsb25lPSdubycgPz4KPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZlcnNpb249JzEuMScgd2lkdGg9JzEwcHgnIGhlaWdodD0nMTBweCc+Cgk8c3R5bGU+CiAgICBjaXJjbGUgewogICAgICBhbmltYXRpb246IGJhbGwgMC42cyBsaW5lYXIgaW5maW5pdGU7CiAgICB9CgogICAgY2lyY2xlOm50aC1jaGlsZCgyKSB7IGFuaW1hdGlvbi1kZWxheTogMC4wNzVzOyB9CiAgICBjaXJjbGU6bnRoLWNoaWxkKDMpIHsgYW5pbWF0aW9uLWRlbGF5OiAwLjE1czsgfQogICAgY2lyY2xlOm50aC1jaGlsZCg0KSB7IGFuaW1hdGlvbi1kZWxheTogMC4yMjVzOyB9CiAgICBjaXJjbGU6bnRoLWNoaWxkKDUpIHsgYW5pbWF0aW9uLWRlbGF5OiAwLjNzOyB9CiAgICBjaXJjbGU6bnRoLWNoaWxkKDYpIHsgYW5pbWF0aW9uLWRlbGF5OiAwLjM3NXM7IH0KICAgIGNpcmNsZTpudGgtY2hpbGQoNykgeyBhbmltYXRpb24tZGVsYXk6IDAuNDVzOyB9CiAgICBjaXJjbGU6bnRoLWNoaWxkKDgpIHsgYW5pbWF0aW9uLWRlbGF5OiAwLjUyNXM7IH0KCiAgICBAa2V5ZnJhbWVzIGJhbGwgewogICAgICBmcm9tIHsgb3BhY2l0eTogMTsgfQogICAgICB0byB7IG9wYWNpdHk6IDAuMzsgfQogICAgfQoJPC9zdHlsZT4KCTxnIHN0eWxlPSJmaWxsOmdyZXk7Ij4KCQk8Y2lyY2xlIGN4PSc1JyBjeT0nMScgcj0nMScgc3R5bGU9J29wYWNpdHk6MC4zOycgLz4KCQk8Y2lyY2xlIGN4PSc3LjgyODQnIGN5PScyLjE3MTYnIHI9JzEnIHN0eWxlPSdvcGFjaXR5OjAuMzsnIC8+CgkJPGNpcmNsZSBjeD0nOScgY3k9JzUnIHI9JzEnIHN0eWxlPSdvcGFjaXR5OjAuMzsnIC8+CgkJPGNpcmNsZSBjeD0nNy44Mjg0JyBjeT0nNy44Mjg0JyByPScxJyBzdHlsZT0nb3BhY2l0eTowLjM7JyAvPgoJCTxjaXJjbGUgY3g9JzUnIGN5PSc5JyByPScxJyBzdHlsZT0nb3BhY2l0eTowLjM7JyAvPgoJCTxjaXJjbGUgY3g9JzIuMTcxNicgY3k9JzcuODI4NCcgcj0nMScgc3R5bGU9J29wYWNpdHk6MC4zOycgLz4KCQk8Y2lyY2xlIGN4PScxJyBjeT0nNScgcj0nMScgc3R5bGU9J29wYWNpdHk6MC4zOycgLz4KCQk8Y2lyY2xlIGN4PScyLjE3MTYnIGN5PScyLjE3MTYnIHI9JzEnIHN0eWxlPSdvcGFjaXR5OjAuMzsnIC8+Cgk8L2c+Cjwvc3ZnPgo=");
+}
+
+.hc-black .monaco-tl-twistie.loading {
+	background-image: url("data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0nMS4wJyBzdGFuZGFsb25lPSdubycgPz4KPHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZlcnNpb249JzEuMScgd2lkdGg9JzEwcHgnIGhlaWdodD0nMTBweCc+Cgk8c3R5bGU+CiAgICBjaXJjbGUgewogICAgICBhbmltYXRpb246IGJhbGwgMC42cyBsaW5lYXIgaW5maW5pdGU7CiAgICB9CgogICAgY2lyY2xlOm50aC1jaGlsZCgyKSB7IGFuaW1hdGlvbi1kZWxheTogMC4wNzVzOyB9CiAgICBjaXJjbGU6bnRoLWNoaWxkKDMpIHsgYW5pbWF0aW9uLWRlbGF5OiAwLjE1czsgfQogICAgY2lyY2xlOm50aC1jaGlsZCg0KSB7IGFuaW1hdGlvbi1kZWxheTogMC4yMjVzOyB9CiAgICBjaXJjbGU6bnRoLWNoaWxkKDUpIHsgYW5pbWF0aW9uLWRlbGF5OiAwLjNzOyB9CiAgICBjaXJjbGU6bnRoLWNoaWxkKDYpIHsgYW5pbWF0aW9uLWRlbGF5OiAwLjM3NXM7IH0KICAgIGNpcmNsZTpudGgtY2hpbGQoNykgeyBhbmltYXRpb24tZGVsYXk6IDAuNDVzOyB9CiAgICBjaXJjbGU6bnRoLWNoaWxkKDgpIHsgYW5pbWF0aW9uLWRlbGF5OiAwLjUyNXM7IH0KCiAgICBAa2V5ZnJhbWVzIGJhbGwgewogICAgICBmcm9tIHsgb3BhY2l0eTogMTsgfQogICAgICB0byB7IG9wYWNpdHk6IDAuMzsgfQogICAgfQoJPC9zdHlsZT4KCTxnIHN0eWxlPSJmaWxsOndoaXRlOyI+CgkJPGNpcmNsZSBjeD0nNScgY3k9JzEnIHI9JzEnIHN0eWxlPSdvcGFjaXR5OjAuMzsnIC8+CgkJPGNpcmNsZSBjeD0nNy44Mjg0JyBjeT0nMi4xNzE2JyByPScxJyBzdHlsZT0nb3BhY2l0eTowLjM7JyAvPgoJCTxjaXJjbGUgY3g9JzknIGN5PSc1JyByPScxJyBzdHlsZT0nb3BhY2l0eTowLjM7JyAvPgoJCTxjaXJjbGUgY3g9JzcuODI4NCcgY3k9JzcuODI4NCcgcj0nMScgc3R5bGU9J29wYWNpdHk6MC4zOycgLz4KCQk8Y2lyY2xlIGN4PSc1JyBjeT0nOScgcj0nMScgc3R5bGU9J29wYWNpdHk6MC4zOycgLz4KCQk8Y2lyY2xlIGN4PScyLjE3MTYnIGN5PSc3LjgyODQnIHI9JzEnIHN0eWxlPSdvcGFjaXR5OjAuMzsnIC8+CgkJPGNpcmNsZSBjeD0nMScgY3k9JzUnIHI9JzEnIHN0eWxlPSdvcGFjaXR5OjAuMzsnIC8+CgkJPGNpcmNsZSBjeD0nMi4xNzE2JyBjeT0nMi4xNzE2JyByPScxJyBzdHlsZT0nb3BhY2l0eTowLjM7JyAvPgoJPC9nPgo8L3N2Zz4K");
+}
+/* required styles */
+
+.leaflet-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+	position: absolute;
+	left: 0;
+	top: 0;
+	}
+.leaflet-container {
+	overflow: hidden;
+	}
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	-webkit-user-select: none;
+	   -moz-user-select: none;
+	        user-select: none;
+	  -webkit-user-drag: none;
+	}
+/* Prevents IE11 from highlighting tiles in blue */
+.leaflet-tile::selection {
+	background: transparent;
+}
+/* Safari renders non-retina tile on retina better with this, but Chrome is worse */
+.leaflet-safari .leaflet-tile {
+	image-rendering: -webkit-optimize-contrast;
+	}
+/* hack that prevents hw layers "stretching" when loading new tiles */
+.leaflet-safari .leaflet-tile-container {
+	width: 1600px;
+	height: 1600px;
+	-webkit-transform-origin: 0 0;
+	}
+.leaflet-marker-icon,
+.leaflet-marker-shadow {
+	display: block;
+	}
+/* .leaflet-container svg: reset svg max-width decleration shipped in Joomla! (joomla.org) 3.x */
+/* .leaflet-container img: map is broken in FF if you have max-width: 100% on tiles */
+.leaflet-container .leaflet-overlay-pane svg,
+.leaflet-container .leaflet-marker-pane img,
+.leaflet-container .leaflet-shadow-pane img,
+.leaflet-container .leaflet-tile-pane img,
+.leaflet-container img.leaflet-image-layer,
+.leaflet-container .leaflet-tile {
+	max-width: none !important;
+	max-height: none !important;
+	}
+
+.leaflet-container.leaflet-touch-zoom {
+	-ms-touch-action: pan-x pan-y;
+	touch-action: pan-x pan-y;
+	}
+.leaflet-container.leaflet-touch-drag {
+	-ms-touch-action: pinch-zoom;
+	/* Fallback for FF which doesn't support pinch-zoom */
+	touch-action: none;
+	touch-action: pinch-zoom;
+}
+.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+	-ms-touch-action: none;
+	touch-action: none;
+}
+.leaflet-container {
+	-webkit-tap-highlight-color: transparent;
+}
+.leaflet-container a {
+	-webkit-tap-highlight-color: rgba(51, 181, 229, 0.4);
+}
+.leaflet-tile {
+	filter: inherit;
+	visibility: hidden;
+	}
+.leaflet-tile-loaded {
+	visibility: inherit;
+	}
+.leaflet-zoom-box {
+	width: 0;
+	height: 0;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+	z-index: 800;
+	}
+/* workaround for https://bugzilla.mozilla.org/show_bug.cgi?id=888319 */
+.leaflet-overlay-pane svg {
+	-moz-user-select: none;
+	}
+
+.leaflet-pane         { z-index: 400; }
+
+.leaflet-tile-pane    { z-index: 200; }
+.leaflet-overlay-pane { z-index: 400; }
+.leaflet-shadow-pane  { z-index: 500; }
+.leaflet-marker-pane  { z-index: 600; }
+.leaflet-tooltip-pane   { z-index: 650; }
+.leaflet-popup-pane   { z-index: 700; }
+
+.leaflet-map-pane canvas { z-index: 100; }
+.leaflet-map-pane svg    { z-index: 200; }
+
+.leaflet-vml-shape {
+	width: 1px;
+	height: 1px;
+	}
+.lvml {
+	behavior: url(#default#VML);
+	display: inline-block;
+	position: absolute;
+	}
+
+
+/* control positioning */
+
+.leaflet-control {
+	position: relative;
+	z-index: 800;
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+.leaflet-top,
+.leaflet-bottom {
+	position: absolute;
+	z-index: 1000;
+	pointer-events: none;
+	}
+.leaflet-top {
+	top: 0;
+	}
+.leaflet-right {
+	right: 0;
+	}
+.leaflet-bottom {
+	bottom: 0;
+	}
+.leaflet-left {
+	left: 0;
+	}
+.leaflet-control {
+	float: left;
+	clear: both;
+	}
+.leaflet-right .leaflet-control {
+	float: right;
+	}
+.leaflet-top .leaflet-control {
+	margin-top: 10px;
+	}
+.leaflet-bottom .leaflet-control {
+	margin-bottom: 10px;
+	}
+.leaflet-left .leaflet-control {
+	margin-left: 10px;
+	}
+.leaflet-right .leaflet-control {
+	margin-right: 10px;
+	}
+
+
+/* zoom and fade animations */
+
+.leaflet-fade-anim .leaflet-tile {
+	will-change: opacity;
+	}
+.leaflet-fade-anim .leaflet-popup {
+	opacity: 0;
+	-webkit-transition: opacity 0.2s linear;
+	   -moz-transition: opacity 0.2s linear;
+	        transition: opacity 0.2s linear;
+	}
+.leaflet-fade-anim .leaflet-map-pane .leaflet-popup {
+	opacity: 1;
+	}
+.leaflet-zoom-animated {
+	-webkit-transform-origin: 0 0;
+	    -ms-transform-origin: 0 0;
+	        transform-origin: 0 0;
+	}
+.leaflet-zoom-anim .leaflet-zoom-animated {
+	will-change: transform;
+	}
+.leaflet-zoom-anim .leaflet-zoom-animated {
+	-webkit-transition: -webkit-transform 0.25s cubic-bezier(0,0,0.25,1);
+	   -moz-transition:    -moz-transform 0.25s cubic-bezier(0,0,0.25,1);
+	        transition:         transform 0.25s cubic-bezier(0,0,0.25,1);
+	}
+.leaflet-zoom-anim .leaflet-tile,
+.leaflet-pan-anim .leaflet-tile {
+	-webkit-transition: none;
+	   -moz-transition: none;
+	        transition: none;
+	}
+
+.leaflet-zoom-anim .leaflet-zoom-hide {
+	visibility: hidden;
+	}
+
+
+/* cursors */
+
+.leaflet-interactive {
+	cursor: pointer;
+	}
+.leaflet-grab {
+	cursor: -webkit-grab;
+	cursor:    -moz-grab;
+	cursor:         grab;
+	}
+.leaflet-crosshair,
+.leaflet-crosshair .leaflet-interactive {
+	cursor: crosshair;
+	}
+.leaflet-popup-pane,
+.leaflet-control {
+	cursor: auto;
+	}
+.leaflet-dragging .leaflet-grab,
+.leaflet-dragging .leaflet-grab .leaflet-interactive,
+.leaflet-dragging .leaflet-marker-draggable {
+	cursor: move;
+	cursor: -webkit-grabbing;
+	cursor:    -moz-grabbing;
+	cursor:         grabbing;
+	}
+
+/* marker & overlays interactivity */
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-image-layer,
+.leaflet-pane > svg path,
+.leaflet-tile-container {
+	pointer-events: none;
+	}
+
+.leaflet-marker-icon.leaflet-interactive,
+.leaflet-image-layer.leaflet-interactive,
+.leaflet-pane > svg path.leaflet-interactive,
+svg.leaflet-image-layer.leaflet-interactive path {
+	pointer-events: visiblePainted; /* IE 9-10 doesn't have auto */
+	pointer-events: auto;
+	}
+
+/* visual tweaks */
+
+.leaflet-container {
+	background: #ddd;
+	outline: 0;
+	}
+.leaflet-container a {
+	color: #0078A8;
+	}
+.leaflet-container a.leaflet-active {
+	outline: 2px solid orange;
+	}
+.leaflet-zoom-box {
+	border: 2px dotted #38f;
+	background: rgba(255,255,255,0.5);
+	}
+
+
+/* general typography */
+.leaflet-container {
+	font: 12px/1.5 "Helvetica Neue", Arial, Helvetica, sans-serif;
+	}
+
+
+/* general toolbar styles */
+
+.leaflet-bar {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.65);
+	border-radius: 4px;
+	}
+.leaflet-bar a,
+.leaflet-bar a:hover {
+	background-color: #fff;
+	border-bottom: 1px solid #ccc;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+	display: block;
+	text-align: center;
+	text-decoration: none;
+	color: black;
+	}
+.leaflet-bar a,
+.leaflet-control-layers-toggle {
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	display: block;
+	}
+.leaflet-bar a:hover {
+	background-color: #f4f4f4;
+	}
+.leaflet-bar a:first-child {
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	}
+.leaflet-bar a:last-child {
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom: none;
+	}
+.leaflet-bar a.leaflet-disabled {
+	cursor: default;
+	background-color: #f4f4f4;
+	color: #bbb;
+	}
+
+.leaflet-touch .leaflet-bar a {
+	width: 30px;
+	height: 30px;
+	line-height: 30px;
+	}
+.leaflet-touch .leaflet-bar a:first-child {
+	border-top-left-radius: 2px;
+	border-top-right-radius: 2px;
+	}
+.leaflet-touch .leaflet-bar a:last-child {
+	border-bottom-left-radius: 2px;
+	border-bottom-right-radius: 2px;
+	}
+
+/* zoom control */
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+	font: bold 18px 'Lucida Console', Monaco, monospace;
+	text-indent: 1px;
+	}
+
+.leaflet-touch .leaflet-control-zoom-in, .leaflet-touch .leaflet-control-zoom-out  {
+	font-size: 22px;
+	}
+
+
+/* layers control */
+
+.leaflet-control-layers {
+	box-shadow: 0 1px 5px rgba(0,0,0,0.4);
+	background: #fff;
+	border-radius: 5px;
+	}
+.leaflet-control-layers-toggle {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAQAAAADQ4RFAAACf0lEQVR4AY1UM3gkARTePdvdoTxXKc+qTl3aU5U6b2Kbkz3Gtq3Zw6ziLGNPzrYx7946Tr6/ee/XeCQ4D3ykPtL5tHno4n0d/h3+xfuWHGLX81cn7r0iTNzjr7LrlxCqPtkbTQEHeqOrTy4Yyt3VCi/IOB0v7rVC7q45Q3Gr5K6jt+3Gl5nCoDD4MtO+j96Wu8atmhGqcNGHObuf8OM/x3AMx38+4Z2sPqzCxRFK2aF2e5Jol56XTLyggAMTL56XOMoS1W4pOyjUcGGQdZxU6qRh7B9Zp+PfpOFlqt0zyDZckPi1ttmIp03jX8gyJ8a/PG2yutpS/Vol7peZIbZcKBAEEheEIAgFbDkz5H6Zrkm2hVWGiXKiF4Ycw0RWKdtC16Q7qe3X4iOMxruonzegJzWaXFrU9utOSsLUmrc0YjeWYjCW4PDMADElpJSSQ0vQvA1Tm6/JlKnqFs1EGyZiFCqnRZTEJJJiKRYzVYzJck2Rm6P4iH+cmSY0YzimYa8l0EtTODFWhcMIMVqdsI2uiTvKmTisIDHJ3od5GILVhBCarCfVRmo4uTjkhrhzkiBV7SsaqS+TzrzM1qpGGUFt28pIySQHR6h7F6KSwGWm97ay+Z+ZqMcEjEWebE7wxCSQwpkhJqoZA5ivCdZDjJepuJ9IQjGGUmuXJdBFUygxVqVsxFsLMbDe8ZbDYVCGKxs+W080max1hFCarCfV+C1KATwcnvE9gRRuMP2prdbWGowm1KB1y+zwMMENkM755cJ2yPDtqhTI6ED1M/82yIDtC/4j4BijjeObflpO9I9MwXTCsSX8jWAFeHr05WoLTJ5G8IQVS/7vwR6ohirYM7f6HzYpogfS3R2OAAAAAElFTkSuQmCC);
+	width: 36px;
+	height: 36px;
+	}
+.leaflet-retina .leaflet-control-layers-toggle {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADQAAAA0CAQAAABvcdNgAAAEsklEQVR4AWL4TydIhpZK1kpWOlg0w3ZXP6D2soBtG42jeI6ZmQTHzAxiTbSJsYLjO9HhP+WOmcuhciVnmHVQcJnp7DFvScowZorad/+V/fVzMdMT2g9Cv9guXGv/7pYOrXh2U+RRR3dSd9JRx6bIFc/ekqHI29JC6pJ5ZEh1yWkhkbcFeSjxgx3L2m1cb1C7bceyxA+CNjT/Ifff+/kDk2u/w/33/IeCMOSaWZ4glosqT3DNnNZQ7Cs58/3Ce5HL78iZH/vKVIaYlqzfdLu8Vi7dnvUbEza5Idt36tquZFldl6N5Z/POLof0XLK61mZCmJSWjVF9tEjUluu74IUXvgttuVIHE7YxSkaYhJZam7yiM9Pv82JYfl9nptxZaxMJE4YSPty+vF0+Y2up9d3wwijfjZbabqm/3bZ9ecKHsiGmRflnn1MW4pjHf9oLufyn2z3y1D6n8g8TZhxyzipLNPnAUpsOiuWimg52psrTZYnOWYNDTMuWBWa0tJb4rgq1UvmutpaYEbZlwU3CLJm/ayYjHW5/h7xWLn9Hh1vepDkyf7dE7MtT5LR4e7yYpHrkhOUpEfssBLq2pPhAqoSWKUkk7EDqkmK6RrCEzqDjhNDWNE+XSMvkJRDWlZTmCW0l0PHQGRZY5t1L83kT0Y3l2SItk5JAWHl2dCOBm+fPu3fo5/3v61RMCO9Jx2EEYYhb0rmNQMX/vm7gqOEJLcXTGw3CAuRNeyaPWwjR8PRqKQ1PDA/dpv+on9Shox52WFnx0KY8onHayrJzm87i5h9xGw/tfkev0jGsQizqezUKjk12hBMKJ4kbCqGPVNXudyyrShovGw5CgxsRICxF6aRmSjlBnHRzg7Gx8fKqEubI2rahQYdR1YgDIRQO7JvQyD52hoIQx0mxa0ODtW2Iozn1le2iIRdzwWewedyZzewidueOGqlsn1MvcnQpuVwLGG3/IR1hIKxCjelIDZ8ldqWz25jWAsnldEnK0Zxro19TGVb2ffIZEsIO89EIEDvKMPrzmBOQcKQ+rroye6NgRRxqR4U8EAkz0CL6uSGOm6KQCdWjvjRiSP1BPalCRS5iQYiEIvxuBMJEWgzSoHADcVMuN7IuqqTeyUPq22qFimFtxDyBBJEwNyt6TM88blFHao/6tWWhuuOM4SAK4EI4QmFHA+SEyWlp4EQoJ13cYGzMu7yszEIBOm2rVmHUNqwAIQabISNMRstmdhNWcFLsSm+0tjJH1MdRxO5Nx0WDMhCtgD6OKgZeljJqJKc9po8juskR9XN0Y1lZ3mWjLR9JCO1jRDMd0fpYC2VnvjBSEFg7wBENc0R9HFlb0xvF1+TBEpF68d+DHR6IOWVv2BECtxo46hOFUBd/APU57WIoEwJhIi2CdpyZX0m93BZicktMj1AS9dClteUFAUNUIEygRZCtik5zSxI9MubTBH1GOiHsiLJ3OCoSZkILa9PxiN0EbvhsAo8tdAf9Seepd36lGWHmtNANTv5Jd0z4QYyeo/UEJqxKRpg5LZx6btLPsOaEmdMyxYdlc8LMaJnikDlhclqmPiQnTEpLUIZEwkRagjYkEibQErwhkTAKCLQEbUgkzJQWc/0PstHHcfEdQ+UAAAAASUVORK5CYII=);
+	background-size: 26px 26px;
+	}
+.leaflet-touch .leaflet-control-layers-toggle {
+	width: 44px;
+	height: 44px;
+	}
+.leaflet-control-layers .leaflet-control-layers-list,
+.leaflet-control-layers-expanded .leaflet-control-layers-toggle {
+	display: none;
+	}
+.leaflet-control-layers-expanded .leaflet-control-layers-list {
+	display: block;
+	position: relative;
+	}
+.leaflet-control-layers-expanded {
+	padding: 6px 10px 6px 6px;
+	color: #333;
+	background: #fff;
+	}
+.leaflet-control-layers-scrollbar {
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding-right: 5px;
+	}
+.leaflet-control-layers-selector {
+	margin-top: 2px;
+	position: relative;
+	top: 1px;
+	}
+.leaflet-control-layers label {
+	display: block;
+	}
+.leaflet-control-layers-separator {
+	height: 0;
+	border-top: 1px solid #ddd;
+	margin: 5px -10px 5px -6px;
+	}
+
+/* Default icon URLs */
+.leaflet-default-icon-path {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABkAAAApCAYAAADAk4LOAAAFgUlEQVR4Aa1XA5BjWRTN2oW17d3YaZtr2962HUzbDNpjszW24mRt28p47v7zq/bXZtrp/lWnXr337j3nPCe85NcypgSFdugCpW5YoDAMRaIMqRi6aKq5E3YqDQO3qAwjVWrD8Ncq/RBpykd8oZUb/kaJutow8r1aP9II0WmLKLIsJyv1w/kqw9Ch2MYdB++12Onxee/QMwvf4/Dk/Lfp/i4nxTXtOoQ4pW5Aj7wpici1A9erdAN2OH64x8OSP9j3Ft3b7aWkTg/Fm91siTra0f9on5sQr9INejH6CUUUpavjFNq1B+Oadhxmnfa8RfEmN8VNAsQhPqF55xHkMzz3jSmChWU6f7/XZKNH+9+hBLOHYozuKQPxyMPUKkrX/K0uWnfFaJGS1QPRtZsOPtr3NsW0uyh6NNCOkU3Yz+bXbT3I8G3xE5EXLXtCXbbqwCO9zPQYPRTZ5vIDXD7U+w7rFDEoUUf7ibHIR4y6bLVPXrz8JVZEql13trxwue/uDivd3fkWRbS6/IA2bID4uk0UpF1N8qLlbBlXs4Ee7HLTfV1j54APvODnSfOWBqtKVvjgLKzF5YdEk5ewRkGlK0i33Eofffc7HT56jD7/6U+qH3Cx7SBLNntH5YIPvODnyfIXZYRVDPqgHtLs5ABHD3YzLuespb7t79FY34DjMwrVrcTuwlT55YMPvOBnRrJ4VXTdNnYug5ucHLBjEpt30701A3Ts+HEa73u6dT3FNWwflY86eMHPk+Yu+i6pzUpRrW7SNDg5JHR4KapmM5Wv2E8Tfcb1HoqqHMHU+uWDD7zg54mz5/2BSnizi9T1Dg4QQXLToGNCkb6tb1NU+QAlGr1++eADrzhn/u8Q2YZhQVlZ5+CAOtqfbhmaUCS1ezNFVm2imDbPmPng5wmz+gwh+oHDce0eUtQ6OGDIyR0uUhUsoO3vfDmmgOezH0mZN59x7MBi++WDL1g/eEiU3avlidO671bkLfwbw5XV2P8Pzo0ydy4t2/0eu33xYSOMOD8hTf4CrBtGMSoXfPLchX+J0ruSePw3LZeK0juPJbYzrhkH0io7B3k164hiGvawhOKMLkrQLyVpZg8rHFW7E2uHOL888IBPlNZ1FPzstSJM694fWr6RwpvcJK60+0HCILTBzZLFNdtAzJaohze60T8qBzyh5ZuOg5e7uwQppofEmf2++DYvmySqGBuKaicF1blQjhuHdvCIMvp8whTTfZzI7RldpwtSzL+F1+wkdZ2TBOW2gIF88PBTzD/gpeREAMEbxnJcaJHNHrpzji0gQCS6hdkEeYt9DF/2qPcEC8RM28Hwmr3sdNyht00byAut2k3gufWNtgtOEOFGUwcXWNDbdNbpgBGxEvKkOQsxivJx33iow0Vw5S6SVTrpVq11ysA2Rp7gTfPfktc6zhtXBBC+adRLshf6sG2RfHPZ5EAc4sVZ83yCN00Fk/4kggu40ZTvIEm5g24qtU4KjBrx/BTTH8ifVASAG7gKrnWxJDcU7x8X6Ecczhm3o6YicvsLXWfh3Ch1W0k8x0nXF+0fFxgt4phz8QvypiwCCFKMqXCnqXExjq10beH+UUA7+nG6mdG/Pu0f3LgFcGrl2s0kNNjpmoJ9o4B29CMO8dMT4Q5ox8uitF6fqsrJOr8qnwNbRzv6hSnG5wP+64C7h9lp30hKNtKdWjtdkbuPA19nJ7Tz3zR/ibgARbhb4AlhavcBebmTHcFl2fvYEnW0ox9xMxKBS8btJ+KiEbq9zA4RthQXDhPa0T9TEe69gWupwc6uBUphquXgf+/FrIjweHQS4/pduMe5ERUMHUd9xv8ZR98CxkS4F2n3EUrUZ10EYNw7BWm9x1GiPssi3GgiGRDKWRYZfXlON+dfNbM+GgIwYdwAAAAASUVORK5CYII=);
+	}
+
+
+/* attribution and scale controls */
+
+.leaflet-container .leaflet-control-attribution {
+	background: #fff;
+	background: rgba(255, 255, 255, 0.7);
+	margin: 0;
+	}
+.leaflet-control-attribution,
+.leaflet-control-scale-line {
+	padding: 0 5px;
+	color: #333;
+	}
+.leaflet-control-attribution a {
+	text-decoration: none;
+	}
+.leaflet-control-attribution a:hover {
+	text-decoration: underline;
+	}
+.leaflet-container .leaflet-control-attribution,
+.leaflet-container .leaflet-control-scale {
+	font-size: 11px;
+	}
+.leaflet-left .leaflet-control-scale {
+	margin-left: 5px;
+	}
+.leaflet-bottom .leaflet-control-scale {
+	margin-bottom: 5px;
+	}
+.leaflet-control-scale-line {
+	border: 2px solid #777;
+	border-top: none;
+	line-height: 1.1;
+	padding: 2px 5px 1px;
+	font-size: 11px;
+	white-space: nowrap;
+	overflow: hidden;
+	-moz-box-sizing: border-box;
+	     box-sizing: border-box;
+
+	background: #fff;
+	background: rgba(255, 255, 255, 0.5);
+	}
+.leaflet-control-scale-line:not(:first-child) {
+	border-top: 2px solid #777;
+	border-bottom: none;
+	margin-top: -2px;
+	}
+.leaflet-control-scale-line:not(:first-child):not(:last-child) {
+	border-bottom: 2px solid #777;
+	}
+
+.leaflet-touch .leaflet-control-attribution,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	box-shadow: none;
+	}
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+	border: 2px solid rgba(0,0,0,0.2);
+	background-clip: padding-box;
+	}
+
+
+/* popup */
+
+.leaflet-popup {
+	position: absolute;
+	text-align: center;
+	margin-bottom: 20px;
+	}
+.leaflet-popup-content-wrapper {
+	padding: 1px;
+	text-align: left;
+	border-radius: 12px;
+	}
+.leaflet-popup-content {
+	margin: 13px 19px;
+	line-height: 1.4;
+	}
+.leaflet-popup-content p {
+	margin: 18px 0;
+	}
+.leaflet-popup-tip-container {
+	width: 40px;
+	height: 20px;
+	position: absolute;
+	left: 50%;
+	margin-left: -20px;
+	overflow: hidden;
+	pointer-events: none;
+	}
+.leaflet-popup-tip {
+	width: 17px;
+	height: 17px;
+	padding: 1px;
+
+	margin: -10px auto 0;
+
+	-webkit-transform: rotate(45deg);
+	   -moz-transform: rotate(45deg);
+	    -ms-transform: rotate(45deg);
+	        transform: rotate(45deg);
+	}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+	background: white;
+	color: #333;
+	box-shadow: 0 3px 14px rgba(0,0,0,0.4);
+	}
+.leaflet-container a.leaflet-popup-close-button {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 4px 4px 0 0;
+	border: none;
+	text-align: center;
+	width: 18px;
+	height: 14px;
+	font: 16px/14px Tahoma, Verdana, sans-serif;
+	color: #c3c3c3;
+	text-decoration: none;
+	font-weight: bold;
+	background: transparent;
+	}
+.leaflet-container a.leaflet-popup-close-button:hover {
+	color: #999;
+	}
+.leaflet-popup-scrolled {
+	overflow: auto;
+	border-bottom: 1px solid #ddd;
+	border-top: 1px solid #ddd;
+	}
+
+.leaflet-oldie .leaflet-popup-content-wrapper {
+	zoom: 1;
+	}
+.leaflet-oldie .leaflet-popup-tip {
+	width: 24px;
+	margin: 0 auto;
+
+	-ms-filter: "progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678)";
+	filter: progid:DXImageTransform.Microsoft.Matrix(M11=0.70710678, M12=0.70710678, M21=-0.70710678, M22=0.70710678);
+	}
+.leaflet-oldie .leaflet-popup-tip-container {
+	margin-top: -1px;
+	}
+
+.leaflet-oldie .leaflet-control-zoom,
+.leaflet-oldie .leaflet-control-layers,
+.leaflet-oldie .leaflet-popup-content-wrapper,
+.leaflet-oldie .leaflet-popup-tip {
+	border: 1px solid #999;
+	}
+
+
+/* div icon */
+
+.leaflet-div-icon {
+	background: #fff;
+	border: 1px solid #666;
+	}
+
+
+/* Tooltip */
+/* Base styles for the element that has a tooltip */
+.leaflet-tooltip {
+	position: absolute;
+	padding: 6px;
+	background-color: #fff;
+	border: 1px solid #fff;
+	border-radius: 3px;
+	color: #222;
+	white-space: nowrap;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	pointer-events: none;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.4);
+	}
+.leaflet-tooltip.leaflet-clickable {
+	cursor: pointer;
+	pointer-events: auto;
+	}
+.leaflet-tooltip-top:before,
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	position: absolute;
+	pointer-events: none;
+	border: 6px solid transparent;
+	background: transparent;
+	content: "";
+	}
+
+/* Directions */
+
+.leaflet-tooltip-bottom {
+	margin-top: 6px;
+}
+.leaflet-tooltip-top {
+	margin-top: -6px;
+}
+.leaflet-tooltip-bottom:before,
+.leaflet-tooltip-top:before {
+	left: 50%;
+	margin-left: -6px;
+	}
+.leaflet-tooltip-top:before {
+	bottom: 0;
+	margin-bottom: -12px;
+	border-top-color: #fff;
+	}
+.leaflet-tooltip-bottom:before {
+	top: 0;
+	margin-top: -12px;
+	margin-left: -6px;
+	border-bottom-color: #fff;
+	}
+.leaflet-tooltip-left {
+	margin-left: -6px;
+}
+.leaflet-tooltip-right {
+	margin-left: 6px;
+}
+.leaflet-tooltip-left:before,
+.leaflet-tooltip-right:before {
+	top: 50%;
+	margin-top: -6px;
+	}
+.leaflet-tooltip-left:before {
+	right: 0;
+	margin-right: -12px;
+	border-left-color: #fff;
+	}
+.leaflet-tooltip-right:before {
+	left: 0;
+	margin-left: -12px;
+	border-right-color: #fff;
+	}
+
+.leaflet-draw-section{position:relative}.leaflet-draw-toolbar{margin-top:12px}.leaflet-draw-toolbar-top{margin-top:0}.leaflet-draw-toolbar-notop a:first-child{border-top-right-radius:0}.leaflet-draw-toolbar-nobottom a:last-child{border-bottom-right-radius:0}.leaflet-draw-toolbar a{background-image:url(data:image/png;base64,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);background-image:linear-gradient(transparent,transparent),url(/built_assets/dlls/fd5728f2cf777b06b966d05c0c823dc9.svg);background-repeat:no-repeat;background-size:300px 30px;background-clip:padding-box}.leaflet-retina .leaflet-draw-toolbar a{background-image:url(data:image/png;base64,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);background-image:linear-gradient(transparent,transparent),url(/built_assets/dlls/fd5728f2cf777b06b966d05c0c823dc9.svg)}
+.leaflet-draw a{display:block;text-align:center;text-decoration:none}.leaflet-draw a .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}.leaflet-draw-actions{display:none;list-style:none;margin:0;padding:0;position:absolute;left:26px;top:0;white-space:nowrap}.leaflet-touch .leaflet-draw-actions{left:32px}.leaflet-right .leaflet-draw-actions{right:26px;left:auto}.leaflet-touch .leaflet-right .leaflet-draw-actions{right:32px;left:auto}.leaflet-draw-actions li{display:inline-block}
+.leaflet-draw-actions li:first-child a{border-left:0}.leaflet-draw-actions li:last-child a{-webkit-border-radius:0 4px 4px 0;border-radius:0 4px 4px 0}.leaflet-right .leaflet-draw-actions li:last-child a{-webkit-border-radius:0;border-radius:0}.leaflet-right .leaflet-draw-actions li:first-child a{-webkit-border-radius:4px 0 0 4px;border-radius:4px 0 0 4px}.leaflet-draw-actions a{background-color:#919187;border-left:1px solid #AAA;color:#FFF;font:11px/19px "Helvetica Neue",Arial,Helvetica,sans-serif;line-height:28px;text-decoration:none;padding-left:10px;padding-right:10px;height:28px}
+.leaflet-touch .leaflet-draw-actions a{font-size:12px;line-height:30px;height:30px}.leaflet-draw-actions-bottom{margin-top:0}.leaflet-draw-actions-top{margin-top:1px}.leaflet-draw-actions-top a,.leaflet-draw-actions-bottom a{height:27px;line-height:27px}.leaflet-draw-actions a:hover{background-color:#a0a098}.leaflet-draw-actions-top.leaflet-draw-actions-bottom a{height:26px;line-height:26px}.leaflet-draw-toolbar .leaflet-draw-draw-polyline{background-position:-2px -2px}.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-polyline{background-position:0 -1px}
+.leaflet-draw-toolbar .leaflet-draw-draw-polygon{background-position:-31px -2px}.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-polygon{background-position:-29px -1px}.leaflet-draw-toolbar .leaflet-draw-draw-rectangle{background-position:-62px -2px}.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-rectangle{background-position:-60px -1px}.leaflet-draw-toolbar .leaflet-draw-draw-circle{background-position:-92px -2px}.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-circle{background-position:-90px -1px}
+.leaflet-draw-toolbar .leaflet-draw-draw-marker{background-position:-122px -2px}.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-marker{background-position:-120px -1px}.leaflet-draw-toolbar .leaflet-draw-draw-circlemarker{background-position:-273px -2px}.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-draw-circlemarker{background-position:-271px -1px}.leaflet-draw-toolbar .leaflet-draw-edit-edit{background-position:-152px -2px}.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-edit-edit{background-position:-150px -1px}
+.leaflet-draw-toolbar .leaflet-draw-edit-remove{background-position:-182px -2px}.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-edit-remove{background-position:-180px -1px}.leaflet-draw-toolbar .leaflet-draw-edit-edit.leaflet-disabled{background-position:-212px -2px}.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-edit-edit.leaflet-disabled{background-position:-210px -1px}.leaflet-draw-toolbar .leaflet-draw-edit-remove.leaflet-disabled{background-position:-242px -2px}.leaflet-touch .leaflet-draw-toolbar .leaflet-draw-edit-remove.leaflet-disabled{background-position:-240px -2px}
+.leaflet-mouse-marker{background-color:#fff;cursor:crosshair}.leaflet-draw-tooltip{background:#363636;background:rgba(0,0,0,0.5);border:1px solid transparent;-webkit-border-radius:4px;border-radius:4px;color:#fff;font:12px/18px "Helvetica Neue",Arial,Helvetica,sans-serif;margin-left:20px;margin-top:-21px;padding:4px 8px;position:absolute;visibility:hidden;white-space:nowrap;z-index:6}.leaflet-draw-tooltip:before{border-right:6px solid black;border-right-color:rgba(0,0,0,0.5);border-top:6px solid transparent;border-bottom:6px solid transparent;content:"";position:absolute;top:7px;left:-7px}
+.leaflet-error-draw-tooltip{background-color:#f2dede;border:1px solid #e6b6bd;color:#b94a48}.leaflet-error-draw-tooltip:before{border-right-color:#e6b6bd}.leaflet-draw-tooltip-single{margin-top:-12px}.leaflet-draw-tooltip-subtext{color:#f8d5e4}.leaflet-draw-guide-dash{font-size:1%;opacity:.6;position:absolute;width:5px;height:5px}.leaflet-edit-marker-selected{background-color:rgba(254,87,161,0.1);border:4px dashed rgba(254,87,161,0.6);-webkit-border-radius:4px;border-radius:4px;box-sizing:content-box}
+.leaflet-edit-move{cursor:move}.leaflet-edit-resize{cursor:pointer}.leaflet-oldie .leaflet-draw-toolbar{border:1px solid #999}
+/*
+ leaflet.responsive.popup 0.6.4
+ (c) 2019 https://github.com/yafred
+*/
+
+
+/* North */
+.leaflet-resp-popup-north .leaflet-popup-tip {
+	box-shadow: none;
+}
+
+
+/* South */
+.leaflet-resp-popup-south .leaflet-popup-tip-container {
+	top: 0;
+	margin-top: -20px;
+}
+
+.leaflet-resp-popup-south .leaflet-popup-tip {
+	margin: 11px auto 0;
+	box-shadow: none;
+}
+
+
+/* West */
+.leaflet-resp-popup-west .leaflet-popup-tip-container {
+	right: 0;	
+	margin-right: -20px;
+	left: 100%;
+	margin-left: -2px;
+	top: 50%;
+	margin-top: -11px;
+}
+
+.leaflet-resp-popup-west .leaflet-popup-tip {
+	margin: 1px -8px 0 -8px;
+	box-shadow: none;
+}
+
+
+/* East */
+.leaflet-resp-popup-east .leaflet-popup-tip-container {
+	width: 20px;
+	left: 2px;
+	top: 50%;
+	margin-top: -11px;
+}
+
+.leaflet-resp-popup-east .leaflet-popup-tip {
+	margin: 0 11px;
+	box-shadow: none;
+}
+
+
+/* South-East */
+.leaflet-resp-popup-south-east .leaflet-popup-tip-container {
+	left: 0;
+	margin-left: 0;
+	top: 0;
+	margin-top: -20px;
+}
+
+.leaflet-resp-popup-south-east .leaflet-popup-tip {
+	margin: 11px 11px 11px -8px;
+	box-shadow: none;
+}
+
+.leaflet-resp-popup-south-east .leaflet-popup-content-wrapper {
+    border-radius: 0 20px 20px 20px;
+}
+
+
+/* East-South */
+.leaflet-resp-popup-east-south .leaflet-popup-tip-container {
+	width: 20px;
+	left: 0;
+	top: 0;
+}
+
+.leaflet-resp-popup-east-south .leaflet-popup-tip {
+	margin: -8px 11px;
+	box-shadow: none;
+}
+
+.leaflet-resp-popup-east-south .leaflet-popup-content-wrapper {
+    border-radius: 0 20px 20px 20px;
+}
+
+
+/* North-East */
+.leaflet-resp-popup-north-east .leaflet-popup-tip-container {
+	left: 0;
+	margin-left: 0;
+	margin-top: -1px;
+}
+
+.leaflet-resp-popup-north-east .leaflet-popup-tip {
+	margin: -8px 11px 11px -8px;
+	box-shadow: none;
+}
+
+.leaflet-resp-popup-north-east .leaflet-popup-content-wrapper {
+    border-radius: 20px 20px 20px 0;
+}
+
+
+/* East-North */
+.leaflet-resp-popup-east-north .leaflet-popup-tip-container {
+	left: 0;
+	margin-left: -20px;
+	margin-top: -20px;
+}
+
+.leaflet-resp-popup-east-north .leaflet-popup-tip {
+	margin: 11px 11px 11px 11px;
+	box-shadow: none;
+}
+
+
+/* North-West */
+.leaflet-resp-popup-north-west .leaflet-popup-tip-container {
+	width: 20px;
+	margin-right: 0;
+	margin-top: -1px;
+	left: 100%;
+	right: 0;
+}
+
+.leaflet-resp-popup-north-west .leaflet-popup-tip {
+	margin: -8px 11px 11px 11px;
+	box-shadow: none;
+}
+
+.leaflet-resp-popup-north-west .leaflet-popup-content-wrapper {
+    border-radius: 20px 20px 0 20px;
+}
+
+
+/* West-North */
+.leaflet-resp-popup-west-north .leaflet-popup-tip-container {
+	margin-left: 0;
+	margin-top: -20px;
+	left: 100%;
+	right: 0;
+}
+
+.leaflet-resp-popup-west-north .leaflet-popup-tip {
+	margin: 11px 11px 0px -8px;
+	box-shadow: none;
+}
+
+.leaflet-resp-popup-west-north .leaflet-popup-content-wrapper {
+    border-radius: 20px 20px 0 20px;
+}
+
+
+/* South-West */
+.leaflet-resp-popup-south-west .leaflet-popup-tip-container {
+	width: 20px;
+	left: 100%;
+	top: 0;
+	margin-top: -20px;
+}
+
+.leaflet-resp-popup-south-west .leaflet-popup-tip {
+	margin: 11px 11px 11px 11px;
+	box-shadow: none;
+}
+
+.leaflet-resp-popup-south-west .leaflet-popup-content-wrapper {
+	border-radius: 20px 0 20px 20px;
+}
+
+
+/* West-South */
+.leaflet-resp-popup-west-south .leaflet-popup-tip-container {
+	margin-left: 0;
+	margin-right: -20px;
+	left: 100%;
+	right: 0;
+	top: 0;
+}
+
+.leaflet-resp-popup-west-south .leaflet-popup-tip {
+	margin: -8px;
+	box-shadow: none;
+}
+
+.leaflet-resp-popup-west-south .leaflet-popup-content-wrapper {
+	border-radius: 20px 0 20px 20px;
+}
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+.monaco-editor .parameter-hints-widget {
+	z-index: 10;
+	display: flex;
+	flex-direction: column;
+	line-height: 1.5em;
+}
+
+.monaco-editor .parameter-hints-widget > .wrapper {
+	max-width: 440px;
+	display: flex;
+	flex-direction: column;
+}
+
+.monaco-editor .parameter-hints-widget.multiple {
+	min-height: 3.3em;
+	padding: 0 0 0 1.9em;
+}
+
+.monaco-editor .parameter-hints-widget.visible {
+	transition: left .05s ease-in-out;
+}
+
+.monaco-editor .parameter-hints-widget p,
+.monaco-editor .parameter-hints-widget ul {
+	margin: 8px 0;
+}
+
+.monaco-editor .parameter-hints-widget .monaco-scrollable-element,
+.monaco-editor .parameter-hints-widget .body {
+	display: flex;
+	flex-direction: column;
+}
+
+.monaco-editor .parameter-hints-widget .signature {
+	padding: 4px 5px;
+}
+
+.monaco-editor .parameter-hints-widget .docs {
+	padding: 0 10px 0 5px;
+	white-space: pre-wrap;
+}
+
+.monaco-editor .parameter-hints-widget .docs .markdown-docs {
+	white-space: initial;
+}
+
+.monaco-editor .parameter-hints-widget .docs .code {
+	white-space: pre-wrap;
+}
+
+.monaco-editor .parameter-hints-widget .docs code {
+	border-radius: 3px;
+	padding: 0 0.4em;
+}
+
+.monaco-editor .parameter-hints-widget .buttons {
+	position: absolute;
+	display: none;
+	bottom: 0;
+	left: 0;
+}
+
+.monaco-editor .parameter-hints-widget.multiple .buttons {
+	display: block;
+}
+
+.monaco-editor .parameter-hints-widget.multiple .button {
+	position: absolute;
+	left: 2px;
+	width: 16px;
+	height: 16px;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+.monaco-editor .parameter-hints-widget .button.previous {
+	bottom: 24px;
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iIzQyNDI0MiIgZD0iTTEwLjggOS41bC45LS45TDguMSA1IDQuMiA4LjZsLjkuOSAzLTIuNyAyLjcgMi43eiIvPjwvc3ZnPg==");
+}
+
+.monaco-editor .parameter-hints-widget .button.next {
+	bottom: 0;
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iIzQyNDI0MiIgZD0iTTUuMSA1bC0uOS45IDMuNiAzLjYgMy45LTMuNi0xLS45LTMgMi43TDUuMSA1eiIvPjwvc3ZnPg==");
+}
+
+.monaco-editor .parameter-hints-widget .overloads {
+	position: absolute;
+	display: none;
+	text-align: center;
+	bottom: 14px;
+	left: 0;
+	width: 22px;
+	height: 12px;
+	line-height: 12px;
+	opacity: 0.5;
+}
+
+.monaco-editor .parameter-hints-widget.multiple .overloads {
+	display: block;
+}
+
+.monaco-editor .parameter-hints-widget .signature .parameter.active {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.monaco-editor .parameter-hints-widget .documentation-parameter > .parameter {
+	font-weight: bold;
+	margin-right: 0.5em;
+}
+
+/*** VS Dark & High Contrast*/
+
+.monaco-editor.hc-black .parameter-hints-widget .button.previous,
+.monaco-editor.vs-dark .parameter-hints-widget .button.previous {
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iI0U4RThFOCIgZD0iTTEwLjggOS41bC45LS45TDguMSA1IDQuMiA4LjZsLjkuOSAzLTIuNyAyLjcgMi43eiIvPjwvc3ZnPg==");
+}
+
+.monaco-editor.hc-black .parameter-hints-widget .button.next,
+.monaco-editor.vs-dark .parameter-hints-widget .button.next {
+	background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNiAxNiI+PHBhdGggZmlsbD0iI0U4RThFOCIgZD0iTTUuMSA1bC0uOS45IDMuNiAzLjYgMy45LTMuNi0xLS45LTMgMi43TDUuMSA1eiIvPjwvc3ZnPg==");
+}
+
