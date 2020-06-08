@@ -15,5 +15,3 @@ for item in incollections:
         f_write.write(str(item).replace("'", '"') + "\n")
         c=c+1
 
-
-

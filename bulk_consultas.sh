@@ -17,6 +17,7 @@ curl -s -XPOST "localhost:9200/_bulk" -H "Content-Type: application/json" --data
 #######################
 
 
+
 POST incollections/_search
 
 DELETE 911
@@ -28,15 +29,78 @@ POST _search
   }
 }
 
+# RELLENAR SINÓNIMOS:
+
 PUT /911
 {
+  "settings": {
+    "index":{
+      "analysis":{
+        "filter":{
+          "english_stop": {
+            "type":"stop",
+            "stopwords" : "_english_"
+          },
+          "english_stemmer":{
+            "type": "stemmer",
+            "language": "english"
+          },
+          "english_synonyms":{
+            "type":"synonym",
+            "synonyms" : ["eee, jik"]
+          }
+        },
+        "normalizer":{
+          "lowercase":{"type": "custom", "filter": ["lowercase"]}
+        },
+        "analyzer":{
+          "lowercase":{
+            "tokenizer":"keyword",
+            "filter":["lowercase"]
+          },
+          "english":{
+            "tokenizer" : "standard",
+            "filter" : [
+              "lowercase",
+              "english_stop",
+              "english_stemmer"
+            ]
+          },
+          "english_with_synonyms" : {
+            "tokenizer" : "standard",
+            "filter" : [
+              "lowercase",
+              "english_stop",
+              "english_synonyms",
+              "english_stemmer"
+            ]
+          }
+        }
+      }
+    }
+  },
+
   "mappings": {
     "properties": {
       "lat" : {"type":"float"},
       "lng" : {"type":"float"},
       "desc" : {"type":"text"},
       "zip" : {"type":"text"},
-      "title" : {"type":"text"},
+      "title" : {
+        "type":"text",
+        "fields": {
+          "english" : {
+            "type" : "text",
+            "analyzer" : "english",
+            "search_analyzer":"english_with_synonyms"
+          },
+          "normalized" : {
+            "type":"keyword",
+            "normalizer" : "lowercase"
+          },
+          "raw" : {"type" : "keyword"}
+        }
+      },
       "timeStamp" : {"type":"date"},
       "twp" : {"type":"text"},
       "addr" : {"type":"text"},
@@ -44,6 +108,7 @@ PUT /911
     }
   }
 }
+
 
 POST 911/_doc/
 {
@@ -115,7 +180,7 @@ POST 911/_search
 {
   "from":0,"size":1000,
   "query": {
-    "match": {"title.keyword":"EMS: ABDOMINAL PAINS"}
+    "match": {"title":"EMS: ABDOMINAL PAINS"}
   },
   "sort":[
     {"timeStamp":"asc"},
@@ -128,6 +193,7 @@ POST 911/_search
 }
 
 # title para filtrar puedes usar una palabra y mayus o minus
+# si ordenas: score: null
 
 POST 911/_search
 {
@@ -145,7 +211,114 @@ POST 911/_search
   }
 }
 
+# al quitar la ordenacion, te pone score (TF/TFI)
+
+POST 911/_search
+{
+  "from":0,"size":1000,
+  "query": {
+    "match": {"title":"abdominal"}
+  },
+  "_source": {
+    "includes": ["title", "timeStamp"]
+
+  }
+}
+
+POST 911/_search
+{
+  "from":0,"size":1000,
+  "query": {
+    "bool": {
+      "filter" : {"match": {"title" : "abdominal"}}
+    }
+  },
+
+  "_source": {
+    "includes": ["title", "timeStamp"]
+
+  }
+}
+
+# Por defecto hace OR
+POST 911/_search
+{
+  "from":0,"size":1000,
+  "query": {
+    "match": {"title.english": "ems abdominal pains"}
+  },
+  "_source": {
+    "includes": ["title"]
+
+  }
+}
+
+POST 911/_search
+{
+  "from":0,"size":1000,
+  "query": {
+    "match": {"title.normalized": "ems: SUBJECT in Pain"}
+  },
+  "_source": {
+    "includes": ["title"]
+
+  }
+}
+
+
+POST 911/_search
+{
+  "from":0,"size":1000,
+  "query": {
+    "match": {"title.raw": "EMS: SUBJECT IN PAIN"}
+  },
+  "_source": {
+    "includes": ["title"]
+
+  }
+}
+
+
+POST 911/_search
+{
+  "from":0,"size":1000,
+  "query": {
+    "match": {
+      "title.english": {
+        "query" : "ems pain",
+        "operator": "and"
+      }
+    }
+  },
+  "_source": {
+    "includes": ["title"]
+
+  }
+}
+
+
+POST 911/_analyze
+{
+  "field": "title.english",
+  "text" : "Ems: abdominal in PAIN",
+  "explain": true
+}
+
+
+POST 911/_search
+{
+  "from":0,"size":1000,
+  "query": {
+    "match": {"title.english": "abdomin"}
+  },
+  "_source": {
+    "includes": ["title"]
+
+  }
+}
 
 
 
+# VER VIDEO CUANDO LO SUBA
+# MANDAR CORREO CON MIEMBROS DEL EQUIPO Y PLANTEMIENTO DE LA PRÁCTICA
 
